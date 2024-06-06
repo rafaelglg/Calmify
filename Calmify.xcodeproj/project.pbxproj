@@ -8,17 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5308B5992C10C5800019475E /* CalmifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308B5982C10C5800019475E /* CalmifyApp.swift */; };
-		5308B59B2C10C5800019475E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308B59A2C10C5800019475E /* ContentView.swift */; };
+		5308B59B2C10C5800019475E /* InitialHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308B59A2C10C5800019475E /* InitialHome.swift */; };
 		5308B59D2C10C5810019475E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59C2C10C5810019475E /* Assets.xcassets */; };
 		5308B5A02C10C5810019475E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59F2C10C5810019475E /* Preview Assets.xcassets */; };
+		5367E15D2C12171A00AD7135 /* InitialHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E15C2C12171A00AD7135 /* InitialHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5308B5952C10C5800019475E /* Calmify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calmify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5308B5982C10C5800019475E /* CalmifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmifyApp.swift; sourceTree = "<group>"; };
-		5308B59A2C10C5800019475E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5308B59A2C10C5800019475E /* InitialHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialHome.swift; sourceTree = "<group>"; };
 		5308B59C2C10C5810019475E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5308B59F2C10C5810019475E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5308B5A62C10C7D40019475E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5367E15C2C12171A00AD7135 /* InitialHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 		5308B58C2C10C5800019475E = {
 			isa = PBXGroup;
 			children = (
+				5308B5A62C10C7D40019475E /* README.md */,
 				5308B5972C10C5800019475E /* Calmify */,
 				5308B5962C10C5800019475E /* Products */,
 			);
@@ -52,7 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				5308B5982C10C5800019475E /* CalmifyApp.swift */,
-				5308B59A2C10C5800019475E /* ContentView.swift */,
+				5308B59A2C10C5800019475E /* InitialHome.swift */,
+				5367E15C2C12171A00AD7135 /* InitialHomeView.swift */,
 				5308B59C2C10C5810019475E /* Assets.xcassets */,
 				5308B59E2C10C5810019475E /* Preview Content */,
 			);
@@ -137,8 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5308B59B2C10C5800019475E /* ContentView.swift in Sources */,
+				5308B59B2C10C5800019475E /* InitialHome.swift in Sources */,
 				5308B5992C10C5800019475E /* CalmifyApp.swift in Sources */,
+				5367E15D2C12171A00AD7135 /* InitialHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,11 +281,12 @@
 				DEVELOPMENT_TEAM = F52TXSWCFU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Calmify;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,11 +311,12 @@
 				DEVELOPMENT_TEAM = F52TXSWCFU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Calmify;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

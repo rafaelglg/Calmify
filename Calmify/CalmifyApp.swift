@@ -11,7 +11,7 @@ import SwiftUI
 struct CalmifyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InitialHome()
         }
     }
 }
