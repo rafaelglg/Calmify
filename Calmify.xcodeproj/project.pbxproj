@@ -12,6 +12,14 @@
 		5308B59D2C10C5810019475E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59C2C10C5810019475E /* Assets.xcassets */; };
 		5308B5A02C10C5810019475E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59F2C10C5810019475E /* Preview Assets.xcassets */; };
 		5367E15D2C12171A00AD7135 /* InitialHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E15C2C12171A00AD7135 /* InitialHomeView.swift */; };
+		5367E1622C1218F000AD7135 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1612C1218F000AD7135 /* Home.swift */; };
+		5367E1642C121C0F00AD7135 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5367E1632C121C0F00AD7135 /* Localizable.xcstrings */; };
+		5367E1682C1238C400AD7135 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1672C1238C400AD7135 /* Profile.swift */; };
+		5367E16A2C14A7B300AD7135 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1692C14A7B300AD7135 /* CalendarView.swift */; };
+		5367E16C2C14BF8000AD7135 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5367E16B2C14BF8000AD7135 /* Launch Screen.storyboard */; };
+		5367E16E2C14C01300AD7135 /* Breather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E16D2C14C01300AD7135 /* Breather.swift */; };
+		5367E1712C15B8A900AD7135 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1702C15B8A900AD7135 /* UserModel.swift */; };
+		5367E1742C15BA1000AD7135 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1732C15BA1000AD7135 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,14 @@
 		5308B59F2C10C5810019475E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5308B5A62C10C7D40019475E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5367E15C2C12171A00AD7135 /* InitialHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialHomeView.swift; sourceTree = "<group>"; };
+		5367E1612C1218F000AD7135 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		5367E1632C121C0F00AD7135 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		5367E1672C1238C400AD7135 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		5367E1692C14A7B300AD7135 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		5367E16B2C14BF8000AD7135 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5367E16D2C14C01300AD7135 /* Breather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breather.swift; sourceTree = "<group>"; };
+		5367E1702C15B8A900AD7135 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		5367E1732C15BA1000AD7135 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +72,11 @@
 			isa = PBXGroup;
 			children = (
 				5308B5982C10C5800019475E /* CalmifyApp.swift */,
-				5308B59A2C10C5800019475E /* InitialHome.swift */,
-				5367E15C2C12171A00AD7135 /* InitialHomeView.swift */,
-				5308B59C2C10C5810019475E /* Assets.xcassets */,
+				5367E16F2C15B88F00AD7135 /* Domain */,
+				5367E1722C15B9F400AD7135 /* Data */,
+				5367E15F2C1218D600AD7135 /* UI */,
+				5367E1662C121C3100AD7135 /* Resources */,
+				5367E1652C121C1500AD7135 /* Localizable */,
 				5308B59E2C10C5810019475E /* Preview Content */,
 			);
 			path = Calmify;
@@ -70,6 +88,68 @@
 				5308B59F2C10C5810019475E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5367E15E2C1218A500AD7135 /* Initial Home */ = {
+			isa = PBXGroup;
+			children = (
+				5308B59A2C10C5800019475E /* InitialHome.swift */,
+				5367E15C2C12171A00AD7135 /* InitialHomeView.swift */,
+			);
+			path = "Initial Home";
+			sourceTree = "<group>";
+		};
+		5367E15F2C1218D600AD7135 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5367E15E2C1218A500AD7135 /* Initial Home */,
+				5367E1602C1218DF00AD7135 /* Home */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5367E1602C1218DF00AD7135 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1612C1218F000AD7135 /* Home.swift */,
+				5367E16D2C14C01300AD7135 /* Breather.swift */,
+				5367E1692C14A7B300AD7135 /* CalendarView.swift */,
+				5367E1672C1238C400AD7135 /* Profile.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5367E1652C121C1500AD7135 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1632C121C0F00AD7135 /* Localizable.xcstrings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		5367E1662C121C3100AD7135 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5367E16B2C14BF8000AD7135 /* Launch Screen.storyboard */,
+				5308B59C2C10C5810019475E /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5367E16F2C15B88F00AD7135 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1702C15B8A900AD7135 /* UserModel.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5367E1722C15B9F400AD7135 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1732C15BA1000AD7135 /* UserViewModel.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +194,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 5308B58C2C10C5800019475E;
 			productRefGroup = 5308B5962C10C5800019475E /* Products */;
@@ -132,6 +213,8 @@
 			files = (
 				5308B5A02C10C5810019475E /* Preview Assets.xcassets in Resources */,
 				5308B59D2C10C5810019475E /* Assets.xcassets in Resources */,
+				5367E16C2C14BF8000AD7135 /* Launch Screen.storyboard in Resources */,
+				5367E1642C121C0F00AD7135 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +226,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5308B59B2C10C5800019475E /* InitialHome.swift in Sources */,
+				5367E16E2C14C01300AD7135 /* Breather.swift in Sources */,
+				5367E16A2C14A7B300AD7135 /* CalendarView.swift in Sources */,
+				5367E1682C1238C400AD7135 /* Profile.swift in Sources */,
 				5308B5992C10C5800019475E /* CalmifyApp.swift in Sources */,
+				5367E1622C1218F000AD7135 /* Home.swift in Sources */,
 				5367E15D2C12171A00AD7135 /* InitialHomeView.swift in Sources */,
+				5367E1742C15BA1000AD7135 /* UserViewModel.swift in Sources */,
+				5367E1712C15B8A900AD7135 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +375,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,6 +406,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
