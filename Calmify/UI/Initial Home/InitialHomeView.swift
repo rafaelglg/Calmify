@@ -34,34 +34,40 @@ struct InitialHomeView: View {
                         .easeInOut(duration: 1.5)
                         .delay(0.8), value: animate)
             
-            circleButton
+            nextButton
         }.padding(.all, 45)
             .onAppear(perform: {
                 animate.toggle()
             })
     }
     
-    var circleButton: some View {
+    var nextButton: some View {
         HStack {
             Spacer()
             Button {
-                goToHomeView = true
+                withAnimation {
+                    goToHomeView = true
+                }
             } label: {
-                Image(systemName: "chevron.right")
+                Text("Let's start")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.black)
+                    .opacity(animate ? 1 : 0)
+                    .animation(
+                        .easeInOut(duration: 1.5)
+                        .delay(0.8), value: animate)
+                Image(systemName: "arrow.forward")
                     .padding()
-                    .foregroundStyle(.white)
-                    .frame(width: 80, height: 80)
-                    .background(Color(.black))
-                    .clipShape(.circle)
+                    .font(.title3)
+                    .foregroundStyle(.black)
                     .opacity(animate ? 1 : 0)
                     .animation(
                         .easeInOut(duration: 1.5)
                         .delay(0.8), value: animate)
             }
-            Spacer()
         }
     }
-    
 }
 
 #Preview {

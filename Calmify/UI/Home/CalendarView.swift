@@ -10,13 +10,11 @@ import SwiftUI
 struct CalendarView: View {
     var body: some View {
         NavigationStack {
-            Text("Calmify")
-                .font(.title)
-                .fontWeight(.semibold)
-                .padding()
             ScrollView {
                 CalendarCreator(interval: DateInterval(start: .distantPast, end: .distantFuture))
             }
+            .navigationTitle("Calmify")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

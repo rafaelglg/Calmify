@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct Home: View {
+    @State var selectedTab: Int = 0
     var body: some View {
-        
-            TabView {
-                Breather()
-                    .font(.system(size: 40))
-                    .bold()
-                    .tabItem {
+        TabView(selection: $selectedTab) {
+            Breather(selectedTab: $selectedTab)
+                .tabItem {
                     Image(systemName: "leaf")
                     Text("Breathe")
                 }
-                CalendarView()
-                    .tabItem {
+                .tag(0)
+            CalendarView()
+                .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
-                Profile()
-                    .tabItem {
+                .tag(1)
+            Profile()
+                .tabItem {
                     Image(systemName: "person.circle.fill")
                     Text("Profile")
-            }
+                }
+                .tag(2)
         }
     }
 }

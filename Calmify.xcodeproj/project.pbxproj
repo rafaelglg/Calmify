@@ -20,6 +20,7 @@
 		5367E16E2C14C01300AD7135 /* Breather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E16D2C14C01300AD7135 /* Breather.swift */; };
 		5367E1712C15B8A900AD7135 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1702C15B8A900AD7135 /* UserModel.swift */; };
 		5367E1742C15BA1000AD7135 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1732C15BA1000AD7135 /* UserViewModel.swift */; };
+		5367E1762C1A45D000AD7135 /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1752C1A45D000AD7135 /* BreathingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		5367E16D2C14C01300AD7135 /* Breather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breather.swift; sourceTree = "<group>"; };
 		5367E1702C15B8A900AD7135 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5367E1732C15BA1000AD7135 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		5367E1752C1A45D000AD7135 /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				5367E1612C1218F000AD7135 /* Home.swift */,
 				5367E16D2C14C01300AD7135 /* Breather.swift */,
+				5367E1752C1A45D000AD7135 /* BreathingView.swift */,
 				5367E1692C14A7B300AD7135 /* CalendarView.swift */,
 				5367E1672C1238C400AD7135 /* Profile.swift */,
 			);
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5308B59B2C10C5800019475E /* InitialHome.swift in Sources */,
+				5367E1762C1A45D000AD7135 /* BreathingView.swift in Sources */,
 				5367E16E2C14C01300AD7135 /* Breather.swift in Sources */,
 				5367E16A2C14A7B300AD7135 /* CalendarView.swift in Sources */,
 				5367E1682C1238C400AD7135 /* Profile.swift in Sources */,

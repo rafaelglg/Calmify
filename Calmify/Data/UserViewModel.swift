@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-class UserViewModel: ObservableObject {
-    @Published var userData: UserModel
+@Observable
+class UserViewModel {
+    let userData: UserModel
     
     init() {
         self.userData = UserModel.getUserModel()

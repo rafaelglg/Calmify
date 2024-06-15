@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld seconds respiration" : {
+
+    },
+    "Breath in" : {
+
+    },
+    "Breath out" : {
+
+    },
     "Breathe" : {
 
     },
@@ -16,13 +25,25 @@
     "Calmify is here" : {
 
     },
-    "Hello, World!" : {
+    "Cancel" : {
+
+    },
+    "Edit profile" : {
+
+    },
+    "Hold" : {
 
     },
     "IG" : {
 
     },
+    "INTERESTS" : {
+
+    },
     "iOS Developer" : {
+
+    },
+    "Let's start" : {
 
     },
     "Madrid, Spain" : {
@@ -31,7 +52,22 @@
     "Message" : {
 
     },
+    "pick the seconds" : {
+
+    },
+    "Play now and start relaxing" : {
+
+    },
     "Profile" : {
+
+    },
+    "Take 1 minute to **breathe** " : {
+
+    },
+    "Take a **moment** for yourself" : {
+
+    },
+    "Welcome!" : {
 
     }
   },

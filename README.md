@@ -1,7 +1,7 @@
 #  Calmify
 
 Author: Rafael Loggiodice
-Relaxing app for you.
+Relaxing app for you
 
 Soon more features.
 
