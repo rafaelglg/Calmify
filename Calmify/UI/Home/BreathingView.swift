@@ -14,16 +14,13 @@ struct BreathingView: View {
     @State private var holdBreath: Bool = false
     @State private var breathOut: Bool = false
     @State private var onCircleTapped: Bool = false
-    
     @State private var breatheInCircleSize: Bool = false
     @State private var breatheOutCircleSize :Bool = false
-    
     @State private var timer: Timer?
     @State private var rotationProgress: Double = 0
-    
     @State private var durations = [2,3,4,5]
     @State private var selectedDuration: Int = 2
-
+    
     let holdColor = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     let gradientColors: [Color] = [Color.cyan, Color.indigo]
     
@@ -62,15 +59,15 @@ extension BreathingView {
                     Text("\(number) seconds respiration")
                 }
             }
-            .onTapGesture {
-                resetAnimation()
-                onCircleTapped = false
-            }
             .pickerStyle(.automatic)
             .padding()
             .background(Color.white)
             .cornerRadius(10)
             .shadow(color: .black.opacity(0.3), radius: 5)
+            .onTapGesture {
+                resetAnimation()
+                onCircleTapped = false
+            }
         }
         .padding(30)
     }
@@ -212,7 +209,7 @@ extension BreathingView {
         timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { _ in
             if self.onCircleTapped {
                 self.rotationProgress += 0.0125
-                if self.rotationProgress >= 1 {
+                if self.rotationProgress >= 1 { // full circle
                     self.rotationProgress = 0
                 }
                 

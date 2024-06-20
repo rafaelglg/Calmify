@@ -52,6 +52,12 @@
     "Message" : {
 
     },
+    "Notification active" : {
+
+    },
+    "OK" : {
+
+    },
     "pick the seconds" : {
 
     },
@@ -68,6 +74,9 @@
 
     },
     "Welcome!" : {
+
+    },
+    "You will have every day at 9 AM a notification to remember to take a moment for yourself." : {
 
     }
   },

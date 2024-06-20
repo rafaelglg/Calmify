@@ -36,9 +36,9 @@ struct InitialHomeView: View {
             
             nextButton
         }.padding(.all, 45)
-            .onAppear(perform: {
+            .onAppear {
                 animate.toggle()
-            })
+            }
     }
     
     var nextButton: some View {
@@ -46,13 +46,14 @@ struct InitialHomeView: View {
             Spacer()
             Button {
                 withAnimation {
+                    NotificationManager.shared.requestAuthorization()
                     goToHomeView = true
                 }
             } label: {
                 Text("Let's start")
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Constants.backgroundInvert)
                     .opacity(animate ? 1 : 0)
                     .animation(
                         .easeInOut(duration: 1.5)
@@ -60,7 +61,7 @@ struct InitialHomeView: View {
                 Image(systemName: "arrow.forward")
                     .padding()
                     .font(.title3)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Constants.backgroundInvert)
                     .opacity(animate ? 1 : 0)
                     .animation(
                         .easeInOut(duration: 1.5)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Profile: View {
     @State var showSheet: Bool = false
-    
+    @Environment (\.colorScheme) var colorScheme
     @State var userVM = UserViewModel()
     
     var body: some View {
@@ -27,24 +27,23 @@ struct Profile: View {
                         .padding()
                     
                     interest
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
-                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
-                    .padding()
-
-                    
+                        .background(Constants.backgroundColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                        .padding()
                 }
-                .navigationTitle("Calmify")
+                .navigationTitle(Text(Constants.appTitleName))
+                .navigationBarTitleTextColor(colorScheme == .dark ? .white : .black)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
+                    Button {
                         showSheet.toggle()
-                    }, label: {
+                    } label: {
                         Image(systemName: "ellipsis.circle")
-                    })
+                    }
                 }
             }
             .sheet(isPresented: $showSheet, content: {
@@ -52,26 +51,26 @@ struct Profile: View {
                     Color.init(uiColor: .systemTeal).ignoresSafeArea()
                     
                     VStack {
-                        Button(action: {
+                        Button {
                             
-                        }, label: {
+                        } label: {
                             Text("Edit profile")
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
                                 .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .shadow(radius: 5)
-                        })
+                        }
                         
-                        Button(action: {
+                        Button {
                             showSheet = false
-                        }, label: {
+                        } label: {
                             Text("Cancel")
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)               .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .shadow(radius: 5)
-                        })
+                        }
                     }
                     .padding(50)
                     .presentationDetents([.height(250)])
@@ -79,13 +78,16 @@ struct Profile: View {
             })
         }
     }
+}
+
+extension Profile {
     
     var bgImage: some View {
         ZStack() {
             Image(userVM.userData.bgPicture)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 500, height: 100)
+                .frame(width: 500, height: 80)
         }
     }
     
@@ -121,37 +123,37 @@ struct Profile: View {
             .scaledToFill()
             .clipShape(.circle)
             .frame(width: 100, height: 100)
-            .overlay(content: {
+            .overlay {
                 Circle()
                     .stroke(.white, lineWidth: 3)
-            })
+            }
             .onTapGesture {
-                print("agarafa")
             }
     }
     
     var socialMedia: some View {
         HStack (spacing: 30) {
-            Link(destination: URL(string: "https://www.apple.com")!, label: {
-                Label(title: {
+            Link(destination: URL.safeURL(string: "https://www.apple.com"), label: {
+                Label {
                     Text("Message")
-                },
-                      icon: {
+                } icon: {
                     Image(systemName: "message")
-                })
+                }
                 .frame(width: 180, height: 50)
-                .background(Color(uiColor: .black))
-                .foregroundStyle(.white)
+                .background(Constants.backgroundColor)
+                .foregroundStyle(Constants.backgroundInvert)
                 .clipShape(.capsule)
+                .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .clear , radius: 5)
             })
             
-            Link(destination: URL(string: "https://www.instagram.com/rafaloggiodice")!, label: {
+            Link(destination: URL.safeURL(string: "https://www.instagram.com/rafaloggiodice"), label: {
                 Text("IG")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Constants.backgroundInvert)
                     .frame(width: 50, height: 50)
             })
-            .background(Color(uiColor: .black))
+            .background(Constants.backgroundColor)
             .clipShape(.capsule)
+            .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .clear , radius: 5)
         }
     }
     
@@ -180,7 +182,6 @@ struct Profile: View {
             .padding(.horizontal)
         }
     }
-    
 }
 
 struct InterestTag: View {
@@ -203,7 +204,6 @@ struct InterestTag: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
-
 
 #Preview {
     Profile()

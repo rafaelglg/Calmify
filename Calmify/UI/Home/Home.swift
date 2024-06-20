@@ -30,6 +30,10 @@ struct Home: View {
                 }
                 .tag(2)
         }
+        .onAppear {
+            UNUserNotificationCenter.current().setBadgeCount(0)
+            NotificationManager.shared.RemoveDeliveredNotifications()
+        }
     }
 }
 
