@@ -113,6 +113,9 @@
 			children = (
 				5367E15E2C1218A500AD7135 /* Initial Home */,
 				5367E1602C1218DF00AD7135 /* Home */,
+				53A867BE2C2496C90039DF17 /* Calendar */,
+				53A867BD2C2496B50039DF17 /* Breather */,
+				53A867BF2C2496F00039DF17 /* Profile */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -121,10 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				5367E1612C1218F000AD7135 /* Home.swift */,
-				5367E16D2C14C01300AD7135 /* Breather.swift */,
-				5367E1752C1A45D000AD7135 /* BreathingView.swift */,
-				5367E1692C14A7B300AD7135 /* CalendarView.swift */,
-				5367E1672C1238C400AD7135 /* Profile.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -170,6 +169,31 @@
 				53A867BB2C2447950039DF17 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		53A867BD2C2496B50039DF17 /* Breather */ = {
+			isa = PBXGroup;
+			children = (
+				5367E16D2C14C01300AD7135 /* Breather.swift */,
+				5367E1752C1A45D000AD7135 /* BreathingView.swift */,
+			);
+			path = Breather;
+			sourceTree = "<group>";
+		};
+		53A867BE2C2496C90039DF17 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1692C14A7B300AD7135 /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		53A867BF2C2496F00039DF17 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5367E1672C1238C400AD7135 /* Profile.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
