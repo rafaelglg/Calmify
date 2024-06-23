@@ -1,7 +1,13 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%lld seconds respiration" : {
+
+    },
+    "Acción 1" : {
 
     },
     "Breath in" : {
@@ -58,19 +64,22 @@
     "OK" : {
 
     },
-    "pick the seconds" : {
-
-    },
     "Play now and start relaxing" : {
 
     },
     "Profile" : {
 
     },
+    "Start Breathing" : {
+
+    },
     "Take 1 minute to **breathe** " : {
 
     },
     "Take a **moment** for yourself" : {
+
+    },
+    "Tap me" : {
 
     },
     "Welcome!" : {

@@ -60,10 +60,10 @@ extension Breather {
                 BreathingView()
             } label: {
                 Text("Start Breathing")
-                    .frame(width: 190, height: 60)
+                    .frame(width: 190, height: 65)
                     .foregroundStyle(Constants.backgroundInvert)
                     .background(Constants.backgroundColor)
-                    .clipShape(.buttonBorder)
+                    .clipShape(.rect(cornerRadius: 25))
                     .shadow(color: colorScheme == .light ? .backgroundInvert.opacity(0.4) : .clear, radius: 8)
             }.padding()
         }
@@ -120,7 +120,7 @@ struct BreatherToolBar: View {
                 Button {
                     if NotificationManager.shared.isNotification {
                         isNotificationTapped = true
-                        NotificationManager.shared.scheduleNotification()
+                        NotificationManager.shared.scheduleNotification(trigger: .time, title: "Have 5 minutes to breathe", body: "Use Breather whenever you want")
                     }
                 } label: {
                     Image(systemName: "bell")

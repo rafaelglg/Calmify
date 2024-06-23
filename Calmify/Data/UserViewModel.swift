@@ -5,10 +5,10 @@
 //  Created by Rafael Loggiodice on 9/6/24.
 //
 
-import SwiftUI
+import Foundation
 
 @Observable
-class UserViewModel {
+final class UserViewModel {
     let userData: UserModel
     
     init() {
