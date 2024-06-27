@@ -9,8 +9,8 @@ import Foundation
 
 struct UserModel: Identifiable {
     let id = UUID()
-    let name: String
-    let profilePicture: String
+    var name: String
+    var profilePicture: String
     let Bio: String
     let bgPicture: String
     
@@ -21,9 +21,4 @@ struct UserModel: Identifiable {
                      maximas
                      """, bgPicture: "bgimage_Profile")
     }
-}
-
-struct User : Identifiable {
-    let id = UUID()
-    let user: UserModel
 }

@@ -10,30 +10,25 @@ import SwiftUI
 struct Profile: View {
     @State var showSheet: Bool = false
     @Environment (\.colorScheme) var colorScheme
-    @State var userVM = UserViewModel()
+    @State var userVM = UserViewModel.shared
+    @State private var imageIsTapped: Bool = false
+    @Namespace private var profileImageAnimation
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
+                VStack(spacing: 20) {
                     
                     bgImage
                     profileImage
-                        .padding(.top, 20)
                     userName
                     userBio
                     userExtraInfo
                     socialMedia
-                        .padding()
-                    
                     interest
-                        .background(Constants.backgroundColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
-                        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
-                        .padding()
                 }
                 .navigationTitle(Text(Constants.appTitleName))
-                .navigationBarTitleTextColor(colorScheme == .dark ? .white : .black)
+                .navigationBarTitleTextColor(.black)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
             }
@@ -47,35 +42,27 @@ struct Profile: View {
                 }
             }
             .sheet(isPresented: $showSheet, content: {
-                ZStack {
-                    Color.init(uiColor: .systemTeal).ignoresSafeArea()
-                    
-                    VStack {
-                        Button {
-                            
-                        } label: {
-                            Text("Edit profile")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .shadow(radius: 5)
-                        }
-                        
-                        Button {
-                            showSheet = false
-                        } label: {
-                            Text("Cancel")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)               .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .shadow(radius: 5)
+                ModalView()
+            })
+        }
+        .blur(radius: imageIsTapped ? 10.0 : 0)
+        .ignoresSafeArea()
+        .onChange(of: userVM.isImageDeleted) { _ ,_ in
+            if userVM.isImageDeleted {
+                userVM.removeProfilePicture()
+                imageIsTapped = false
+                userVM.resetImageDeletedFlag()
+            }
+        }
+        .overlay {
+            if imageIsTapped {
+                ProfileImageTapped(profileImageAnimation: profileImageAnimation)
+                    .onTapGesture {
+                        withAnimation(Animation.easeIn(duration: 0.2)) {
+                            imageIsTapped = false
                         }
                     }
-                    .padding(50)
-                    .presentationDetents([.height(250)])
-                }
-            })
+            }
         }
     }
 }
@@ -91,12 +78,34 @@ extension Profile {
         }
     }
     
+   var profileImage: some View {
+       
+       userVM.imageProfile
+            .resizable()
+            .scaledToFill()
+            .matchedGeometryEffect(id: "profileImage", in: profileImageAnimation)
+            .background(Constants.backgroundColor)
+            .clipShape(Circle())
+            .frame(width: 100, height: 100)
+            .overlay {
+                if !userVM.isImageDeleted {
+                    Circle()
+                        .stroke(Constants.backgroundColor , lineWidth: 3)
+                }
+            }
+            .padding(.top, 20)
+            .onTapGesture {
+                withAnimation(.smooth) {
+                        imageIsTapped = true
+                }
+            }
+    }
+
+    
     var userName: some View {
         Text(userVM.userData.name)
             .font(.system(size: 22))
             .fontWeight(.medium)
-            .padding(.bottom, 7)
-            .padding(.top, 10)
     }
     
     var userBio: some View {
@@ -114,21 +123,6 @@ extension Profile {
         }
         .font(.subheadline)
         .foregroundStyle(Color(uiColor: .systemGray))
-        .padding(.top,3)
-    }
-    
-    var profileImage: some View {
-        Image(userVM.userData.profilePicture)
-            .resizable()
-            .scaledToFill()
-            .clipShape(.circle)
-            .frame(width: 100, height: 100)
-            .overlay {
-                Circle()
-                    .stroke(.white, lineWidth: 3)
-            }
-            .onTapGesture {
-            }
     }
     
     var socialMedia: some View {
@@ -180,6 +174,10 @@ extension Profile {
             .padding(.top, 10)
             .padding(.bottom, 40)
             .padding(.horizontal)
+            .background(Constants.backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
+            .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+            .padding()
         }
     }
 }
@@ -204,6 +202,42 @@ struct InterestTag: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
+
+struct ModalView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        ZStack {
+            Color.init(uiColor: .systemTeal).ignoresSafeArea()
+            VStack {
+                Button {
+                    
+                } label: {
+                    Text("Edit profile")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 5)
+                }
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Cancel")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)               .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 5)
+                }
+            }
+            .padding(50)
+            .presentationDetents([.height(250)])
+        }
+    }
+}
+
+
 
 #Preview {
     Profile()

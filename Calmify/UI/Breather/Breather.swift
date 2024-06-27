@@ -35,13 +35,11 @@ struct Breather: View {
 extension Breather {
     
     var header: some View {
-        VStack {
-            Text("Welcome!")
-                .font(.largeTitle)
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .topLeading)
-        }
-        .padding()
+        Text("Welcome!")
+            .font(.largeTitle)
+            .bold()
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .padding()
     }
     
     var mainContent: some View {

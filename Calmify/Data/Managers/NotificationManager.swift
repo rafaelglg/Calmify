@@ -34,9 +34,10 @@ final class NotificationManager {
         UNUserNotificationCenter.current().requestAuthorization(options: options) { [weak self] success, error in
             if success {
                 self?.isNotification = success
-                print("Success: \(success.description)")
             } else {
-                print("error: \(String(describing: error?.localizedDescription))")
+                let myError: ErrorManager
+                myError = .generalError(error: error ?? NSError(domain: "Calmify", code: 1, userInfo: [NSLocalizedDescriptionKey: "Denied to receive notification"]))
+                print(myError)
             }
         }
     }
