@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Breather: View {
     @Binding var selectedTab: Int
-    @State private var user = UserViewModel()
+    @State private var user = UserViewModel.shared
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -85,7 +85,7 @@ struct BreatherToolBar: View {
                 Button {
                     selectedTab = 2
                 } label: {
-                    Image(user.userData.profilePicture)
+                    user.imageProfile
                         .resizable()
                         .frame(width: 35, height: 35)
                         .clipShape(.circle)

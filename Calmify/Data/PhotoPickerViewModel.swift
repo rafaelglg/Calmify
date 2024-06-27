@@ -26,11 +26,17 @@ import SwiftUI
         Task {
             if let data = try await image.loadTransferable(type: Data.self) {
                 if let uiImage = UIImage(data: data) {
-                    imageSelected = uiImage
-                    updateUserProfileImage (uiImage)
+                    await updateImageSelected(uiImage)
                 }
             }
         }
+    }
+    
+    @MainActor
+    private func updateImageSelected(_ uiImage: UIImage) {
+        imageSelected = uiImage
+        updateUserProfileImage (uiImage)
+
     }
     
     private func updateUserProfileImage(_ uiImage: UIImage) {
