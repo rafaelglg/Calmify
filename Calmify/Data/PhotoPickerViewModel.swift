@@ -9,7 +9,7 @@ import Foundation
 import PhotosUI
 import SwiftUI
 
-@Observable final class PhotoPickerViewModel {
+@Observable class PhotoPickerViewModel {
     static let shared = PhotoPickerViewModel()
     
     var userVM = UserViewModel.shared

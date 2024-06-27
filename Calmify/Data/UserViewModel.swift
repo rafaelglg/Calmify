@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @Observable
-final class UserViewModel {
+class UserViewModel {
     
     static let shared = UserViewModel()
     var userData: UserModel
