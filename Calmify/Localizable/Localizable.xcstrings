@@ -16,7 +16,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld seguros de respiración"
+            "value" : "%lld segundos de respiración"
           }
         }
       }
@@ -127,6 +127,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cambiar foto"
+          }
+        }
+      }
+    },
+    "Choose music" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escoge la música"
+          }
+        }
+      }
+    },
+    "Customize your breathing" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica tu respiración"
           }
         }
       }
@@ -296,7 +316,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tomate un **momento** para ti"
+            "value" : "Toma un **momento** para ti"
           }
         }
       }

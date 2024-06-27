@@ -20,7 +20,7 @@ struct onBoarding: View {
                     .easeIn(duration: 1.0).speed(1), value: animate)
             
             Text("Calmify is here")
-                .font(.system(size: 50))
+                .font(.largeTitle)
                 .opacity(animate ? 1 : 0)
                 .animation(
                     .easeIn(duration: 1.5).delay(0.8), value: animate)

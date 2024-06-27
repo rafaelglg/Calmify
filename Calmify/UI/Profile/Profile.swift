@@ -78,29 +78,32 @@ extension Profile {
         }
     }
     
-   var profileImage: some View {
-       
-       userVM.imageProfile
-            .resizable()
-            .scaledToFill()
-            .matchedGeometryEffect(id: "profileImage", in: profileImageAnimation)
-            .background(Constants.backgroundColor)
-            .clipShape(Circle())
-            .frame(width: 100, height: 100)
-            .overlay {
-                if !userVM.isImageDeleted {
-                    Circle()
-                        .stroke(Constants.backgroundColor , lineWidth: 3)
-                }
+    var profileImage: some View {
+        VStack {
+            if !imageIsTapped {
+                userVM.imageProfile
+                    .resizable()
+                    .scaledToFill()
+                    .matchedGeometryEffect(id: "profileImage", in: profileImageAnimation)
+                    .background(Constants.backgroundColor)
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
+                    .overlay {
+                        if !userVM.isImageDeleted {
+                            Circle()
+                                .stroke(Constants.backgroundColor , lineWidth: 3)
+                        }
+                    }
+                    .padding(.top, 20)
+                    .onTapGesture {
+                        withAnimation(.smooth) {
+                            imageIsTapped = true
+                        }
+                    }
             }
-            .padding(.top, 20)
-            .onTapGesture {
-                withAnimation(.smooth) {
-                        imageIsTapped = true
-                }
-            }
+        }
+        .frame(width: 100, height: 100)
     }
-
     
     var userName: some View {
         Text(userVM.userData.name)
@@ -205,7 +208,7 @@ struct InterestTag: View {
 
 struct ModalView: View {
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         ZStack {
             Color.init(uiColor: .systemTeal).ignoresSafeArea()

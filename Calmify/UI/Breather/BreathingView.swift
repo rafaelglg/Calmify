@@ -20,7 +20,7 @@ struct BreathingView: View {
     @State private var rotationProgress: Double = 0
     @State private var durations = [2,3,4,5]
     @State private var selectedDuration: Int? = nil
-    @State private var menuTitleButton: String = "Customize your breathing"
+    @State private var menuTitleButton: LocalizedStringResource = "Customize your breathing"
     
     let holdColor = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     let gradientColors: [Color] = [Color.cyan, Color.indigo]

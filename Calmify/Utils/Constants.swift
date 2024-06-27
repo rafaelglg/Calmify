@@ -18,6 +18,6 @@ class Constants {
     static let backgroundInvert: Color = Color("BackgroundInvert")
     
     //MARK: Music
-    static let chooseMusic: String = "Choose music"
+    static let chooseMusic: LocalizedStringResource = "Choose music"
 
 }
