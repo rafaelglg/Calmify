@@ -45,7 +45,6 @@ struct Profile: View {
                 ModalView()
             })
         }
-        .blur(radius: imageIsTapped ? 10.0 : 0)
         .ignoresSafeArea()
         .onChange(of: userVM.isImageDeleted) { _ ,_ in
             if userVM.isImageDeleted {
