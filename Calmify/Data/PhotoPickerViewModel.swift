@@ -13,30 +13,35 @@ import SwiftUI
     static let shared = PhotoPickerViewModel()
     
     var userVM = UserViewModel.shared
+    var setImageTask: Task<(),Never>? = nil
     var imageSelected: UIImage? = nil
     var imageSelection: PhotosPickerItem? = nil {
         didSet {
-            setImage(from: imageSelection)
+            setImageTask = Task {
+                await setImage(from: imageSelection)
+            }
+            setImageTask?.cancel()
         }
     }
     
-    private func setImage(from image: PhotosPickerItem?) {
+    private func setImage(from image: PhotosPickerItem?) async {
         guard let image else { return }
         
-        Task {
-            if let data = try await image.loadTransferable(type: Data.self) {
-                if let uiImage = UIImage(data: data) {
-                    await updateImageSelected(uiImage)
-                }
+        do {
+            if let data = try await image.loadTransferable(type: Data.self),
+               let uiImage = UIImage(data: data) {
+                await self.updateImageSelected(uiImage)
             }
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
-    @MainActor
-    private func updateImageSelected(_ uiImage: UIImage) {
-        imageSelected = uiImage
-        updateUserProfileImage (uiImage)
-
+    private func updateImageSelected(_ uiImage: UIImage) async {
+        await MainActor.run {
+            imageSelected = uiImage
+            updateUserProfileImage (uiImage)
+        }
     }
     
     private func updateUserProfileImage(_ uiImage: UIImage) {

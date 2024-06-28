@@ -25,8 +25,8 @@ struct CalendarView: View {
 
 struct CalendarCreator: UIViewRepresentable {
     let interval: DateInterval
+    
     func makeUIView(context: Context) -> UICalendarView {
-
         let calendar = UICalendarView()
         calendar.delegate = context.coordinator
         calendar.availableDateRange = interval
@@ -35,10 +35,12 @@ struct CalendarCreator: UIViewRepresentable {
         return calendar
     }
     
+    // Send data from UIKit to SwiftUI
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
     
+    //Send data from SwiftUI to UIKit
     func updateUIView(_ uiView: UICalendarView, context: Context) {
         
     }

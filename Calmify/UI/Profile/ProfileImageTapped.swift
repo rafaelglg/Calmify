@@ -20,8 +20,7 @@ struct ProfileImageTapped: View {
     
     var body: some View {
         ZStack {
-            Constants.backgroundColor
-                .opacity(0.5)
+            Color.clear
                 .ignoresSafeArea()
             
             VStack {
@@ -71,6 +70,7 @@ struct ProfileImageTapped: View {
                 .frame(width: 300, height: 100)
             }
         }
+        .background(.ultraThinMaterial)
     }
 }
 
