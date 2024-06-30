@@ -8,14 +8,18 @@
 import Foundation
 import SwiftUI
 
+protocol UserViewProtocol {
+    func updateProfilePicture(with base64String: String)
+}
+
 @Observable
-class UserViewModel {
+final class UserViewModel: UserViewProtocol {
     
     static let shared = UserViewModel()
     var userData: UserModel
     var isImageDeleted: Bool = false
     
-    init() {
+    private init() {
         self.userData = UserModel.getUserModel()
     }
     
@@ -35,7 +39,6 @@ class UserViewModel {
     }
     
     func removeProfilePicture() {
-        isImageDeleted = true
         userData.profilePicture = ""
     }
     

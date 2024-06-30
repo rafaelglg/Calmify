@@ -11,6 +11,8 @@
 		5308B59B2C10C5800019475E /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308B59A2C10C5800019475E /* CoordinatorView.swift */; };
 		5308B59D2C10C5810019475E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59C2C10C5810019475E /* Assets.xcassets */; };
 		5308B5A02C10C5810019475E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5308B59F2C10C5810019475E /* Preview Assets.xcassets */; };
+		5321E1AE2C31949C00D314E1 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321E1AD2C31949C00D314E1 /* UserViewModelTests.swift */; };
+		5321E1B52C31ADED00D314E1 /* PhotoPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321E1B42C31ADED00D314E1 /* PhotoPickerViewModelTests.swift */; };
 		53635AFF2C21DEFB00C34088 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53635AFE2C21DEFB00C34088 /* NotificationManager.swift */; };
 		5367E15D2C12171A00AD7135 /* onBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E15C2C12171A00AD7135 /* onBoarding.swift */; };
 		5367E1622C1218F000AD7135 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1612C1218F000AD7135 /* Home.swift */; };
@@ -36,6 +38,16 @@
 		53A867D72C2C58A30039DF17 /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A867D62C2C58A30039DF17 /* PhotoPickerViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5321E1AF2C31949C00D314E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5308B58D2C10C5800019475E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5308B5942C10C5800019475E;
+			remoteInfo = Calmify;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5308B5952C10C5800019475E /* Calmify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calmify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5308B5982C10C5800019475E /* CalmifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmifyApp.swift; sourceTree = "<group>"; };
@@ -43,6 +55,9 @@
 		5308B59C2C10C5810019475E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5308B59F2C10C5810019475E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5308B5A62C10C7D40019475E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5321E1AB2C31949C00D314E1 /* CalmifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalmifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5321E1AD2C31949C00D314E1 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
+		5321E1B42C31ADED00D314E1 /* PhotoPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModelTests.swift; sourceTree = "<group>"; };
 		53635AFE2C21DEFB00C34088 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5367E15C2C12171A00AD7135 /* onBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoarding.swift; sourceTree = "<group>"; };
 		5367E1612C1218F000AD7135 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -76,6 +91,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5321E1A82C31949C00D314E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +106,7 @@
 			children = (
 				5308B5A62C10C7D40019475E /* README.md */,
 				5308B5972C10C5800019475E /* Calmify */,
+				5321E1AC2C31949C00D314E1 /* CalmifyTests */,
 				5308B5962C10C5800019475E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5308B5952C10C5800019475E /* Calmify.app */,
+				5321E1AB2C31949C00D314E1 /* CalmifyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +141,15 @@
 				5308B59F2C10C5810019475E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5321E1AC2C31949C00D314E1 /* CalmifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				5321E1AD2C31949C00D314E1 /* UserViewModelTests.swift */,
+				5321E1B42C31ADED00D314E1 /* PhotoPickerViewModelTests.swift */,
+			);
+			path = CalmifyTests;
 			sourceTree = "<group>";
 		};
 		5367E15E2C1218A500AD7135 /* onBoarding */ = {
@@ -262,6 +295,24 @@
 			productReference = 5308B5952C10C5800019475E /* Calmify.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5321E1AA2C31949C00D314E1 /* CalmifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5321E1B32C31949C00D314E1 /* Build configuration list for PBXNativeTarget "CalmifyTests" */;
+			buildPhases = (
+				5321E1A72C31949C00D314E1 /* Sources */,
+				5321E1A82C31949C00D314E1 /* Frameworks */,
+				5321E1A92C31949C00D314E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5321E1B02C31949C00D314E1 /* PBXTargetDependency */,
+			);
+			name = CalmifyTests;
+			productName = CalmifyTests;
+			productReference = 5321E1AB2C31949C00D314E1 /* CalmifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -274,6 +325,10 @@
 				TargetAttributes = {
 					5308B5942C10C5800019475E = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					5321E1AA2C31949C00D314E1 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 5308B5942C10C5800019475E;
 					};
 				};
 			};
@@ -292,6 +347,7 @@
 			projectRoot = "";
 			targets = (
 				5308B5942C10C5800019475E /* Calmify */,
+				5321E1AA2C31949C00D314E1 /* CalmifyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,6 +363,13 @@
 				5308B59D2C10C5810019475E /* Assets.xcassets in Resources */,
 				5367E16C2C14BF8000AD7135 /* Launch Screen.storyboard in Resources */,
 				5367E1642C121C0F00AD7135 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5321E1A92C31949C00D314E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +404,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5321E1A72C31949C00D314E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5321E1AE2C31949C00D314E1 /* UserViewModelTests.swift in Sources */,
+				5321E1B52C31ADED00D314E1 /* PhotoPickerViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5321E1B02C31949C00D314E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5308B5942C10C5800019475E /* Calmify */;
+			targetProxy = 5321E1AF2C31949C00D314E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5308B5A12C10C5810019475E /* Debug */ = {
@@ -525,6 +605,42 @@
 			};
 			name = Release;
 		};
+		5321E1B12C31949C00D314E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F52TXSWCFU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafael.CalmifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calmify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calmify";
+			};
+			name = Debug;
+		};
+		5321E1B22C31949C00D314E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F52TXSWCFU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafael.CalmifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calmify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calmify";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,6 +658,15 @@
 			buildConfigurations = (
 				5308B5A42C10C5810019475E /* Debug */,
 				5308B5A52C10C5810019475E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5321E1B32C31949C00D314E1 /* Build configuration list for PBXNativeTarget "CalmifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5321E1B12C31949C00D314E1 /* Debug */,
+				5321E1B22C31949C00D314E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
