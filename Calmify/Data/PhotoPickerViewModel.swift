@@ -20,7 +20,6 @@ import SwiftUI
             setImageTask = Task {
                 await setImage(from: imageSelection)
             }
-            setImageTask?.cancel()
         }
     }
     
@@ -50,5 +49,10 @@ import SwiftUI
             let base64String = data.base64EncodedString()
             userVM.updateProfilePicture(with: base64String)
         }
+    }
+    
+    func cancelTasks() {
+        setImageTask?.cancel()
+        setImageTask = nil
     }
 }

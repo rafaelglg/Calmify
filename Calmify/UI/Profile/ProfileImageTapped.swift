@@ -70,6 +70,9 @@ struct ProfileImageTapped: View {
                 .frame(width: 300, height: 100)
             }
         }
+        .onDisappear {
+            photoVM.cancelTasks()
+        }
         .background(.ultraThinMaterial)
     }
 }
