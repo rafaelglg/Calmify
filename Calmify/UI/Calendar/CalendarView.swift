@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
+    let emojis = ["😍","😡"]
+    
     var body: some View {
         NavigationStack {
             ScrollView {
-                CalendarCreator(interval: DateInterval(start: .distantPast, end: .distantFuture))
+                VStack {
+                    HStack {
+                        ForEach(emojis, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Spacer()
+                    CalendarCreator()
+                }
             }
             .navigationTitle("Calmify")
             .navigationBarTitleDisplayMode(.inline)
@@ -24,7 +35,7 @@ struct CalendarView: View {
 }
 
 struct CalendarCreator: UIViewRepresentable {
-    let interval: DateInterval
+    let interval: DateInterval = DateInterval(start: .distantPast, end: .distantFuture)
     
     func makeUIView(context: Context) -> UICalendarView {
         let calendar = UICalendarView()
@@ -49,6 +60,7 @@ struct CalendarCreator: UIViewRepresentable {
 class Coordinator: NSObject, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
     
     var parent: CalendarCreator
+    var decorations: [Date?: UICalendarView.Decoration] = [:]
     
     init(parent: CalendarCreator ) {
         self.parent = parent
@@ -61,7 +73,31 @@ class Coordinator: NSObject, UICalendarViewDelegate, UICalendarSelectionSingleDa
     
 
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        return nil
+        
+        let valentinesDay = DateComponents(
+            calendar: Calendar(identifier: .gregorian),
+            year: 2024,
+            month: 2,
+            day: 14
+        )
+        
+        // Create a calendar decoration for Valentine's day.
+        let heart = UICalendarView.Decoration.image(
+            UIImage(systemName: "heart.fill"),
+            color: UIColor.red,
+            size: .large)
+        
+        decorations = [valentinesDay.date: heart]
+        
+        let day = DateComponents(
+            calendar: dateComponents.calendar,
+            year: dateComponents.year,
+            month: dateComponents.month,
+            day: dateComponents.day
+        )
+        
+        // Return any decoration saved for that date.
+        return decorations[day.date]
     }
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
