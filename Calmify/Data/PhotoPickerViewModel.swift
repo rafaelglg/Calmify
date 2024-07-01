@@ -22,7 +22,7 @@ import SwiftUI
         }
     }
     
-    private init(userVM: UserViewProtocol = UserViewModel.shared){
+    init(userVM: UserViewProtocol = UserViewModel.shared){
         self.userVM = userVM
     }
     
