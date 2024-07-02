@@ -1,6 +1,5 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/macos,swift,xcode,swiftpackagemanager
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,swift,xcode,swiftpackagemanager
+### Ignore googleService
+GoogleService-Info
 
 ### macOS ###
 # General
