@@ -18,6 +18,7 @@ final class SoundManager {
             return
         }
         do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
         } catch let error {
             print("error Playing Music \(error.localizedDescription)")
