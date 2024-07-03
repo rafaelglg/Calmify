@@ -207,34 +207,53 @@ struct InterestTag: View {
 
 struct ModalView: View {
     @Environment(\.dismiss) var dismiss
+    @State var loginVM = LoginViewModel()
     
     var body: some View {
         ZStack {
-            Color.init(uiColor: .systemTeal).ignoresSafeArea()
+            Color.background
+                .ignoresSafeArea()
+                .opacity(0.4)
+            
             VStack {
-                Button {
+                VStack {
+                    Button {
+                        do {
+                            try loginVM.logOut()
+                            print("logout succesfully")
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    } label: {
+                        Text("Logout")
+                            .foregroundStyle(Color.backgroundInvert)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .background(Color.background)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: .black.opacity(0.2) , radius: 8)
+                            .padding()
+                    }
                     
-                } label: {
-                    Text("Edit profile")
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(radius: 5)
-                }
-                
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Cancel")
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)               .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(radius: 5)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundStyle(Color.backgroundInvert)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .background(Color.background)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: .black.opacity(0.2) , radius: 8)
+                            .padding()
+                    }
+                    
                 }
             }
-            .padding(50)
             .presentationDetents([.height(250)])
+            .fullScreenCover(isPresented: $loginVM.goToLoginView) {
+                LoginView()
+            }
         }
     }
 }

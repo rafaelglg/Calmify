@@ -10,13 +10,24 @@ import SwiftUI
 struct CoordinatorView: View {
     @State var goToHomeView: Bool = false
     @State var animate: Bool = false
+    @State var showSignInView: Bool = false
+    
     var body: some View {
         Group {
             if goToHomeView {
-                Home()
+                if showSignInView {
+                    LoginView()
+                } else {
+                    Home()
+                }
             } else {
                 onBoarding(goToHomeView: $goToHomeView, animate: $animate)
             }
+        }
+        .onAppear {
+                let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+                print(authUser as Any)
+                showSignInView = authUser == nil
         }
     }
 }

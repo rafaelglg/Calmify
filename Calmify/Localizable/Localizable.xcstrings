@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "@" : {
+
+    },
     "%@" : {
       "localizations" : {
         "es" : {
@@ -172,6 +175,7 @@
       }
     },
     "Edit profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -180,6 +184,12 @@
           }
         }
       }
+    },
+    "Email" : {
+
+    },
+    "Forgot?" : {
+
     },
     "Hold" : {
       "localizations" : {
@@ -231,6 +241,15 @@
         }
       }
     },
+    "Login" : {
+
+    },
+    "Login with google" : {
+
+    },
+    "Logout" : {
+
+    },
     "Madrid, Spain" : {
       "localizations" : {
         "es" : {
@@ -250,6 +269,9 @@
           }
         }
       }
+    },
+    "New to Calmify?" : {
+
     },
     "Notification active" : {
       "localizations" : {
@@ -271,6 +293,12 @@
         }
       }
     },
+    "Or" : {
+
+    },
+    "Password" : {
+
+    },
     "Play now and start relaxing" : {
       "localizations" : {
         "es" : {
@@ -290,6 +318,9 @@
           }
         }
       }
+    },
+    "Register" : {
+
     },
     "Start Breathing" : {
       "localizations" : {
