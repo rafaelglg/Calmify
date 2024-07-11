@@ -18,6 +18,7 @@ struct Home: View {
                         Text("Breathe")
                     }
                     .tag(0)
+
                 CalendarView()
                     .tabItem {
                         Image(systemName: "calendar")

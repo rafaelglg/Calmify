@@ -88,7 +88,7 @@ struct MusicView: View {
         }
         .padding()
     }
-    //MARK: -
+    //MARK: - getCheckMark
     func getCheckMark() -> Image {
         return Image(systemName: "checkmark")
     }

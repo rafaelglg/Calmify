@@ -10,43 +10,47 @@ import Foundation
 @Observable
 final class LoginViewModel {
     
-    let authManager: AuthenticationManagerProtocol
-    var email: String = ""
+    @ObservationIgnored let authManager: AuthenticationManagerProtocol
+    @MainActor var email: String = ""
     var password: String = ""
+    var name: String = ""
+    var lastName: String = ""
+    var phoneNumber: String = ""
     var isLoggedIn: Bool = false
-    var goToLoginView: Bool = false
-
+    var goToSignInView: Bool = false
+    var goToSignUpView: Bool = false
+    var goToHomeView: Bool = false
     
     init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared) {
         self.authManager = authManager
     }
     
+    @MainActor
     func signUp() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("no email or password")
-            return
+            throw ErrorManager.noInfoInSignUp
         }
         try await authManager.createUser(email: email, password: password)
         isLoggedIn = true
-        goToLoginView = false
-
+        goToSignInView = false
     }
     
+    @MainActor
     func signIn() async throws {
         
         guard !email.isEmpty, !password.isEmpty else {
-            print("no email or password")
-            return
+            throw ErrorManager.noInfoInSignIn
         }
         
         try await authManager.signIn(email: email, password: password)
         isLoggedIn = true
-        goToLoginView = false
+        goToSignInView = false
     }
     
     func logOut() throws {
         try authManager.logOut()
         isLoggedIn = false
-        goToLoginView = true
+        goToSignInView = true
     }
 }

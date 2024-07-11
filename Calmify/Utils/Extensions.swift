@@ -23,5 +23,32 @@ extension View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: uiColor ]
         return self
     }
+    
+    func customColorsForButtons(pressedColor: Color, defaultColor: Color ) -> some View {
+        buttonStyle(PressableButtonStyle(pressedColor: pressedColor, defaultColor: defaultColor))
+    }
 }
 
+extension TextfieldsLayout where T == AnyView {
+    static var previewEmail: TextfieldsLayout {
+        TextfieldsLayout(
+            fieldType: .textFieldType,
+            placeholder: "Email",
+            prefix: { AnyView(Text("")) },
+            text: .constant("hola"),
+            keyboardType: .emailAddress,
+            isPasswordVisible: .constant(false)
+        )
+    }
+    
+    static var previewPassword: TextfieldsLayout {
+        TextfieldsLayout(
+            fieldType: .secureFieldType,
+            placeholder: "hola",
+            prefix: { AnyView(Image(systemName: "lock.fill")) },
+            text: .constant("hola"),
+            keyboardType: .default,
+            isPasswordVisible: .constant(true)
+        )
+    }
+}

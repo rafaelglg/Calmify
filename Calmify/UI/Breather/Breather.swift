@@ -49,7 +49,7 @@ extension Breather {
             }
             .font(.title2)
             
-            Image("meditationBreatheView")
+            Image("Breathing-home")
                 .resizable()
                 .frame(width: 350, height: 350)
                 .scaledToFit()
@@ -65,7 +65,7 @@ extension Breather {
                     .shadow(color: colorScheme == .light ? .backgroundInvert.opacity(0.4) : .clear, radius: 8)
             }.padding()
         }
-        .padding(.top, 60)
+        .padding(.top, 30)
     }
     
 }

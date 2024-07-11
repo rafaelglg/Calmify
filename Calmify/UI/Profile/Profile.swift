@@ -251,8 +251,8 @@ struct ModalView: View {
                 }
             }
             .presentationDetents([.height(250)])
-            .fullScreenCover(isPresented: $loginVM.goToLoginView) {
-                LoginView()
+            .fullScreenCover(isPresented: $loginVM.goToSignInView) {
+                SignInView()
             }
         }
     }

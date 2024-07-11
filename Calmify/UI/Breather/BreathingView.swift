@@ -26,16 +26,18 @@ struct BreathingView: View {
     let gradientColors: [Color] = [Color.cyan, Color.indigo]
     
     var body: some View {
-        VStack {
-            header
-            MusicView()
-            Breathercircle
-            customizeBreathingButton
+        ScrollView {
+            VStack {
+                header
+                MusicView()
+                Breathercircle
+                customizeBreathingButton
+            }
+            .onDisappear {
+                resetAnimation()
+            }
         }
-        .frame(width: 400, height: 350)
-        .onDisappear {
-            resetAnimation()
-        }
+        .clipped()
     }
 }
 

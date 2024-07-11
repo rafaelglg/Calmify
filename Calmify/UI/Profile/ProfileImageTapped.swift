@@ -81,12 +81,6 @@ struct ProfileImageTapped: View {
     ProfileImageTapped(profileImageAnimation: Namespace().wrappedValue)
 }
 
-extension View {
-    func customColorsForButtons(pressedColor: Color, defaultColor: Color ) -> some View {
-        buttonStyle(PressableButtonStyle(pressedColor: pressedColor, defaultColor: defaultColor))
-    }
-}
-
 // MARK: - To make a custom button
 struct PressableButtonStyle: ButtonStyle {
     var pressedColor: Color

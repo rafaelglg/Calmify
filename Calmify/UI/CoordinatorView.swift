@@ -16,7 +16,7 @@ struct CoordinatorView: View {
         Group {
             if goToHomeView {
                 if showSignInView {
-                    LoginView()
+                    SignInView()
                 } else {
                     Home()
                 }

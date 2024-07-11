@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "@" : {
 
     },
@@ -185,7 +188,7 @@
         }
       }
     },
-    "Email" : {
+    "Enter" : {
 
     },
     "Forgot?" : {
@@ -296,7 +299,7 @@
     "Or" : {
 
     },
-    "Password" : {
+    "OR" : {
 
     },
     "Play now and start relaxing" : {
@@ -319,7 +322,10 @@
         }
       }
     },
-    "Register" : {
+    "Sign in" : {
+
+    },
+    "Sign Up" : {
 
     },
     "Start Breathing" : {
@@ -361,6 +367,9 @@
           }
         }
       }
+    },
+    "Welcome to Calmify" : {
+
     },
     "Welcome!" : {
       "localizations" : {
