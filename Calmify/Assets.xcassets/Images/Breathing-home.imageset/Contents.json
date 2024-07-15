@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Breathing-home.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Breathing-home.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -18,33 +18,41 @@ struct TextfieldsLayout<T: View>: View {
     
     let fieldType: FieldType
     let placeholder: String
-    let prefix: () -> T
+    let iconPrefix: () -> T
     @Binding var text: String
     let keyboardType: UIKeyboardType
+    let forgotButtonEnable: Bool
+    let forgotButtonAction: () -> Void
     @Binding var isPasswordVisible: Bool
     @Environment(\.colorScheme) var colorScheme
     
-    init(fieldType: FieldType, placeholder: String, prefix: @escaping () -> T, text: Binding<String>, keyboardType: UIKeyboardType, isPasswordVisible: Binding<Bool>) {
+    /// This is for secure Textfield
+    init(fieldType: FieldType, placeholder: String, iconPrefix: @escaping () -> T, text: Binding<String>, keyboardType: UIKeyboardType, isPasswordVisible: Binding<Bool>, forgotButtonEnable: Bool = true, forgotButtonAction: @escaping() -> Void = {}) {
         self.fieldType = fieldType
         self.placeholder = placeholder
-        self.prefix = prefix
+        self.iconPrefix = iconPrefix
         self._text = text
         self.keyboardType = keyboardType
         self._isPasswordVisible = isPasswordVisible
+        self.forgotButtonEnable = forgotButtonEnable
+        self.forgotButtonAction = forgotButtonAction
     }
     
+    ///This is for general textfield
     init(fieldType: FieldType, placeholder: String, prefix: @escaping () -> T, text: Binding<String>, keyboardType: UIKeyboardType) {
         self.fieldType = fieldType
         self.placeholder = placeholder
-        self.prefix = prefix
+        self.iconPrefix = prefix
         self._text = text
         self.keyboardType = keyboardType
         self._isPasswordVisible = .constant(false)
+        self.forgotButtonEnable = false
+        self.forgotButtonAction = {}
     }
     
     var body: some View {
         HStack {
-            prefix()
+            iconPrefix()
                 .foregroundStyle(Color(.systemGray))
             VStack {
                 HStack {
@@ -55,9 +63,10 @@ struct TextfieldsLayout<T: View>: View {
                     } else if fieldType == .numberField {
                         
                         TextField(placeholder, text: $text)
-                            .keyboardType(.numberPad)
+                            .textContentType(.telephoneNumber)
+                            .keyboardType(keyboardType)
                             .onReceive(Just(text)) { newValue in
-                                let filtered = newValue.filter { "0123456789".contains($0) }
+                                let filtered = newValue.filter { "+0123456789".contains($0) }
                                 if filtered != newValue {
                                     self.text = filtered
                                 }
@@ -83,13 +92,15 @@ struct TextfieldsLayout<T: View>: View {
                                     .frame(height: 25)
                             }
                             .padding(.trailing, 20)
-                            Button {
-                                isPasswordVisible.toggle()
-                                print("forgot pressed")
-                            } label: {
-                                Text("Forgot?")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
+                            
+                            if forgotButtonEnable {
+                                Button {
+                                    forgotButtonAction()
+                                } label: {
+                                    Text("Forgot?")
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                }
                             }
                         }
                     }
@@ -107,7 +118,7 @@ struct TextfieldsLayout<T: View>: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", prefix: {Image(systemName: "lock.fill")}, text: .constant("hola"), keyboardType: .emailAddress, isPasswordVisible: .constant(false))
+    TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: .constant("hola"), keyboardType: .emailAddress, isPasswordVisible: .constant(false))
 }
 
 #Preview(traits: .sizeThatFitsLayout) {

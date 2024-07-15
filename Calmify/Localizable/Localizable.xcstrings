@@ -299,9 +299,6 @@
     "Or" : {
 
     },
-    "OR" : {
-
-    },
     "Play now and start relaxing" : {
       "localizations" : {
         "es" : {
@@ -321,6 +318,12 @@
           }
         }
       }
+    },
+    "Reset password" : {
+
+    },
+    "send" : {
+
     },
     "Sign in" : {
 

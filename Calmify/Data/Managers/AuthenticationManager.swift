@@ -8,13 +8,17 @@
 import Foundation
 import FirebaseAuth
 
+
 protocol AuthenticationManagerProtocol {
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel
-    func logOut() throws
+    func getAuthenticatedUser() throws -> AuthDataResultModel
     @discardableResult
     func signIn(email: String, password: String) async throws -> AuthDataResultModel
-    
+    func logOut() throws
+    func resetPassword(email: String) async throws
+    @discardableResult
+    func signInWithGoogle(idTokens: GoogleSignInResultModel) async throws -> AuthDataResultModel
 }
 
 final class AuthenticationManager: AuthenticationManagerProtocol {
@@ -50,6 +54,21 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
         try Auth.auth().signOut()
     }
     
+    func resetPassword(email: String) async throws {
+        try await Auth.auth().sendPasswordReset(withEmail: email)
+    }
     
+    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+        return AuthDataResultModel(user: authDataResult.user)
+    }
+}
+
+// MARK: - Sign In with Google
+extension AuthenticationManager {
     
+    func signInWithGoogle(idTokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
+        let credential = GoogleAuthProvider.credential(withIDToken: idTokens.idToken, accessToken: idTokens.accessToken)
+        return try await signIn(credential: credential)
+    }
 }

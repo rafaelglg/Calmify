@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "bgImage_Profile.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "bgImage_Profile.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },

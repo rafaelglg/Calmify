@@ -205,6 +205,7 @@ struct InterestTag: View {
     }
 }
 
+@MainActor
 struct ModalView: View {
     @Environment(\.dismiss) var dismiss
     @State var loginVM = LoginViewModel()

@@ -7,11 +7,11 @@
 
 import Foundation
 
-@Observable
+@Observable @MainActor
 final class LoginViewModel {
     
     @ObservationIgnored let authManager: AuthenticationManagerProtocol
-    @MainActor var email: String = ""
+    var email: String = ""
     var password: String = ""
     var name: String = ""
     var lastName: String = ""
@@ -20,12 +20,13 @@ final class LoginViewModel {
     var goToSignInView: Bool = false
     var goToSignUpView: Bool = false
     var goToHomeView: Bool = false
+    var buttonIsEnable: Bool = false
+    var goToResetPasswordView: Bool = false
     
     init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared) {
         self.authManager = authManager
     }
     
-    @MainActor
     func signUp() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("no email or password")
@@ -36,7 +37,6 @@ final class LoginViewModel {
         goToSignInView = false
     }
     
-    @MainActor
     func signIn() async throws {
         
         guard !email.isEmpty, !password.isEmpty else {
@@ -52,5 +52,36 @@ final class LoginViewModel {
         try authManager.logOut()
         isLoggedIn = false
         goToSignInView = true
+    }
+    
+    func resetPassword(for givenEmail: String) async throws {
+        
+        guard !givenEmail.isEmpty else {
+            throw ErrorManager.noEmailFoundForReset
+        }
+        
+        try await authManager.resetPassword(email: givenEmail)
+    }
+    
+    func buttonEnableForSignUp() {
+        
+        let fullName = !name.isEmpty
+        let email = email.count > 6 && email.contains("@")
+        let password = password.count >= 6
+        let phoneNumber = phoneNumber.count > 8 && phoneNumber.count < 15
+        
+        buttonIsEnable = (fullName && email && password && phoneNumber)
+    }
+}
+
+// MARK: - Sign In with Google
+extension LoginViewModel {
+    
+    func signInWithGoogle() async throws {
+        
+        let tokens = try await SignInGoogleManager().signIn()
+        
+        try await authManager.signInWithGoogle(idTokens: tokens)
+        isLoggedIn = true
     }
 }

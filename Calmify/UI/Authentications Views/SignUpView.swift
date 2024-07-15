@@ -7,11 +7,14 @@
 
 import SwiftUI
 
+@MainActor
 struct SignUpView: View {
     
     @State private var loginVM = LoginViewModel()
     @State private var isPasswordVisible: Bool = false
-    @FocusState private var isFocused: Bool
+    @FocusState private var focusField: Field?
+    @State private var keyboardHeight: CGFloat = 0
+    
     
     var body: some View {
         ScrollView {
@@ -21,18 +24,21 @@ struct SignUpView: View {
                 signUpFields
                 button
             }
+            .onTapGesture {
+                focusField = nil
+            }
             .padding(.horizontal, 30)
+            .onAppear {
+                focusField = .fullName
+            }
         }
-        .clipped()
-        .onTapGesture {
-            isFocused = false
-        }
+        .clipped() //Clips the view within the scrollView
     }
 }
 
 extension SignUpView {
     var header: some View {
-        Image("signUp")
+        Image(.signUp)
             .resizable()
             .scaledToFill()
             .frame(width: 250, height: 250)
@@ -49,53 +55,50 @@ extension SignUpView {
     }
     
     var signUpFields: some View {
-        VStack(spacing: 20) {
-                        
-            Button {
-                //login
-            } label: {
-                Text("Login with google")
-                    .foregroundStyle(.white)
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(.blue)
-                    .clipShape(.rect(cornerRadius: 25))
-                    .padding(.horizontal, 20)
-            }
+        VStack(spacing: 30) {
             
-              HStack {
-                  Divider()
-                      .frame(width: 100, height: 1)
-                      .background(Color(.systemGray5))
-                  Text("OR")
-                      .font(.headline)
-                      .foregroundStyle(Color(.systemGray))
-                      .padding(.horizontal)
-                  Divider()
-                      .frame(width: 100, height: 1)
-                      .background(Color(.systemGray5))
-              }
-              .frame(maxWidth: .infinity)
-              .frame(width: 300, height: 30)
-
-              .padding(.horizontal)
-
+            TextfieldsLayout(fieldType: .textFieldType, placeholder: "Full name", prefix: {Image(systemName: "person.fill")}, text: $loginVM.name, keyboardType: .default)
+                .textContentType(.name)
+                .focused($focusField, equals: .fullName)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusField = .email
+                }
+                .onChange(of: loginVM.name) {
+                    loginVM.buttonEnableForSignUp()
+                }
             
-            VStack(spacing: 30) {
-                
-                TextfieldsLayout(fieldType: .textFieldType, placeholder: "Full name", prefix: {Image(systemName: "person.fill")}, text: $loginVM.name, keyboardType: .namePhonePad)
-                    .focused($isFocused)
-                
-                TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $loginVM.email, keyboardType: .emailAddress)
-                    .focused($isFocused)
-                
-                TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", prefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .namePhonePad, isPasswordVisible: $isPasswordVisible)
-                    .focused($isFocused)
-                
-                TextfieldsLayout(fieldType: .numberField, placeholder: "Mobile", prefix: {Image(systemName: "phone.fill")}, text: $loginVM.phoneNumber, keyboardType: .phonePad)
-                    .focused($isFocused)
-            }
+            TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $loginVM.email, keyboardType: .emailAddress)
+                .textContentType(.emailAddress)
+                .focused($focusField, equals: .email)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusField = .password
+                }
+                .onChange(of: loginVM.email) {
+                    loginVM.buttonEnableForSignUp()
+                }
+            
+            TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .default, isPasswordVisible: $isPasswordVisible, forgotButtonEnable: false)
+                .textContentType(.password)
+                .focused($focusField, equals: .password)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusField = .phoneNumber
+                }
+                .onChange(of: loginVM.password) {
+                    loginVM.buttonEnableForSignUp()
+                }
+            
+            TextfieldsLayout(fieldType: .numberField, placeholder: "Mobile", prefix: {Image(systemName: "phone.fill")}, text: $loginVM.phoneNumber, keyboardType: .phonePad)
+                .focused($focusField, equals: .phoneNumber)
+                .submitLabel(.done)
+                .onSubmit {
+                    focusField = nil
+                }
+                .onChange(of: loginVM.phoneNumber) {
+                    loginVM.buttonEnableForSignUp()
+                }
         }
         .padding(.top, 10)
     }
@@ -117,10 +120,11 @@ extension SignUpView {
                     .foregroundStyle(.white)
                     .fontWeight(.semibold)
                     .frame(width: 200 ,height: 50)
-                    .background(.blue)
+                    .background(loginVM.buttonIsEnable ? .blue : .gray)
                     .clipShape(.rect(cornerRadius: 25))
                 
             }
+            .disabled(!loginVM.buttonIsEnable)
         }
         .fullScreenCover(isPresented: $loginVM.goToHomeView){
             Home()
@@ -131,4 +135,13 @@ extension SignUpView {
 
 #Preview {
     SignUpView()
+}
+
+extension SignUpView {
+    enum Field: Hashable {
+        case fullName
+        case email
+        case password
+        case phoneNumber
+    }
 }

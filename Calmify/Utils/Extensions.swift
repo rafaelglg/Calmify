@@ -34,7 +34,7 @@ extension TextfieldsLayout where T == AnyView {
         TextfieldsLayout(
             fieldType: .textFieldType,
             placeholder: "Email",
-            prefix: { AnyView(Text("")) },
+            iconPrefix: { AnyView(Text("")) },
             text: .constant("hola"),
             keyboardType: .emailAddress,
             isPasswordVisible: .constant(false)
@@ -45,10 +45,35 @@ extension TextfieldsLayout where T == AnyView {
         TextfieldsLayout(
             fieldType: .secureFieldType,
             placeholder: "hola",
-            prefix: { AnyView(Image(systemName: "lock.fill")) },
+            iconPrefix: { AnyView(Image(systemName: "lock.fill")) },
             text: .constant("hola"),
             keyboardType: .default,
             isPasswordVisible: .constant(true)
         )
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        var cleanHexCode = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        cleanHexCode = cleanHexCode.replacingOccurrences(of: "#", with: "")
+        print(cleanHexCode)
+        var rgb: UInt64 = 0
+        
+        Scanner(string: cleanHexCode).scanHexInt64(&rgb)
+        
+        let redValue = Double((rgb >> 16) & 0xFF) / 255.0
+        let greenValue = Double((rgb >> 8) & 0xFF) / 255.0
+        let blueValue = Double(rgb & 0xFF) / 255.0
+        self.init(red: redValue, green: greenValue, blue: blueValue)
+    }
+    
+    init(hex: UInt32) {
+        let red = Double((hex >> 24) & 0xff) / 255.0
+        let green = Double((hex >> 16) & 0xff) / 255.0
+        let blue = Double((hex >> 8) & 0xff) / 255.0
+        let alpha = Double(hex & 0xff) / 255.0
+
+        self.init(red: red, green: green, blue: blue, opacity: alpha)
     }
 }
