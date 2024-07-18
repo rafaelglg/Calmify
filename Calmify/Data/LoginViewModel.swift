@@ -10,6 +10,7 @@ import Foundation
 @Observable @MainActor
 final class LoginViewModel {
     
+    @ObservationIgnored let googleManager: SignInGoogleManagerProtocol
     @ObservationIgnored let authManager: AuthenticationManagerProtocol
     var email: String = ""
     var password: String = ""
@@ -23,8 +24,9 @@ final class LoginViewModel {
     var buttonIsEnable: Bool = false
     var goToResetPasswordView: Bool = false
     
-    init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared) {
+    init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared, googleManager: SignInGoogleManagerProtocol = SignInGoogleManager()) {
         self.authManager = authManager
+        self.googleManager = googleManager
     }
     
     func signUp() async throws {
@@ -54,10 +56,19 @@ final class LoginViewModel {
         goToSignInView = true
     }
     
+    func deleteUser() async throws {
+        try await authManager.deleteUser()
+        goToSignInView = true
+    }
+    
     func resetPassword(for givenEmail: String) async throws {
         
+        guard NetworkManager.shared.isConnected else {
+            throw ErrorManager.noInternetConnection
+        }
+        
         guard !givenEmail.isEmpty else {
-            throw ErrorManager.noEmailFoundForReset
+            throw ErrorManager.emptyEmail
         }
         
         try await authManager.resetPassword(email: givenEmail)
@@ -68,9 +79,8 @@ final class LoginViewModel {
         let fullName = !name.isEmpty
         let email = email.count > 6 && email.contains("@")
         let password = password.count >= 6
-        let phoneNumber = phoneNumber.count > 8 && phoneNumber.count < 15
         
-        buttonIsEnable = (fullName && email && password && phoneNumber)
+        buttonIsEnable = (fullName && email && password)
     }
 }
 
@@ -79,7 +89,7 @@ extension LoginViewModel {
     
     func signInWithGoogle() async throws {
         
-        let tokens = try await SignInGoogleManager().signIn()
+        let tokens = try await googleManager.signIn()
         
         try await authManager.signInWithGoogle(idTokens: tokens)
         isLoggedIn = true

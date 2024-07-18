@@ -15,6 +15,9 @@ enum ErrorManager: Error, LocalizedError {
     case noInfoInSignUp
     case noEmailFoundForReset
     case notFindTopVC
+    case deleteUser
+    case emptyEmail
+    case noUserWasFound
     
     var errorDescription: String? {
         switch self {
@@ -29,9 +32,15 @@ enum ErrorManager: Error, LocalizedError {
         case .noInfoInSignUp:
             return "No info was written in sign up form"
         case .noEmailFoundForReset:
-            return "No email was found, please make sure you have an account with us"
+            return "The email was not found, please make sure you have an account with us"
         case .notFindTopVC:
             return "Did not find top viewcontroller"
+        case .deleteUser:
+            return "The user could not be deleted"
+        case .emptyEmail:
+            return "The email field is empty, please write a valid email"
+        case .noUserWasFound:
+            return "The user could not be authenticated"
         }
     }
 }

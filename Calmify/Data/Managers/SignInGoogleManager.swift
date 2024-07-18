@@ -9,7 +9,11 @@ import Foundation
 import GoogleSignIn
 import GoogleSignInSwift
 
-final class SignInGoogleManager {
+protocol SignInGoogleManagerProtocol {
+    func signIn() async throws -> GoogleSignInResultModel
+}
+
+final class SignInGoogleManager: SignInGoogleManagerProtocol {
     
     let authManager: AuthenticationManagerProtocol = AuthenticationManager.shared
     

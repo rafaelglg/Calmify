@@ -19,6 +19,7 @@ protocol AuthenticationManagerProtocol {
     func resetPassword(email: String) async throws
     @discardableResult
     func signInWithGoogle(idTokens: GoogleSignInResultModel) async throws -> AuthDataResultModel
+    func deleteUser() async throws
 }
 
 final class AuthenticationManager: AuthenticationManagerProtocol {
@@ -40,7 +41,7 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     
     func getAuthenticatedUser() throws -> AuthDataResultModel {
         guard let authUser = Auth.auth().currentUser else {
-            throw URLError.init(.userAuthenticationRequired)
+            throw ErrorManager.noUserWasFound
         }
         return AuthDataResultModel(user: authUser)
     }
@@ -52,6 +53,14 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     
     func logOut() throws {
         try Auth.auth().signOut()
+    }
+    
+    func deleteUser() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw ErrorManager.deleteUser
+        }
+        
+        try await user.delete()
     }
     
     func resetPassword(email: String) async throws {

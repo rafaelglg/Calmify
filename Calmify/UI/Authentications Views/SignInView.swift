@@ -11,8 +11,9 @@ import SwiftUI
 struct SignInView: View {
     
     @State var loginVM = LoginViewModel()
+    @State private var isLoading: Bool = false
     @State private var isPasswordVisible: Bool = false
-    @FocusState private var isFocused: Bool
+    @FocusState private var focusField: Field?
     
     var body: some View {
         ScrollView {
@@ -22,20 +23,20 @@ struct SignInView: View {
                 loginButtons
                 register
             }
+            .padding(.horizontal ,30)
+            
             .sheet(isPresented: $loginVM.goToSignUpView) {
                 SignUpView()
             }
-            
-            .sheet(isPresented: $loginVM.goToResetPasswordView, content: {
+            .sheet(isPresented: $loginVM.goToResetPasswordView) {
                 ResetPasswordView()
+            }
+            .background(Color.background.onTapGesture {
+                focusField = nil
             })
-            
-            .padding(30)
         }
         .clipped()
-        //.onTapGesture {
-          //  isFocused = false
-       // }
+        .background(Color.background.ignoresSafeArea())
     }
 }
 
@@ -44,28 +45,38 @@ extension SignInView {
         Image(.loginImg)
             .resizable()
             .scaledToFit()
-            .frame(width: 250, height: 250)
+            .frame(width: 230, height: 230)
     }
     
     var loginFields: some View {
-        VStack(alignment: .leading, spacing: 40) {
+        VStack(alignment: .leading, spacing: 30) {
             Text("Sign in")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .foregroundStyle(Constants.backgroundInvert)
             
             TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $loginVM.email, keyboardType: .emailAddress)
-                .focused($isFocused)
+                .textContentType(.emailAddress)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusField = .password
+                }
+                .focused($focusField,equals: .email)
             
             TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .default, isPasswordVisible: $isPasswordVisible, forgotButtonAction: {
                 loginVM.goToResetPasswordView = true
             })
-            .focused($isFocused)
+            .textContentType(.password)
+            .submitLabel(.done)
+            .onSubmit {
+                focusField = nil
+            }
+            .focused($focusField ,equals: .password)
         }
     }
     
     var loginButtons: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 15) {
             Button {
                 Task {
                     do {
@@ -82,23 +93,22 @@ extension SignInView {
                 Text("Login")
                     .foregroundStyle(.white)
                     .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(.blue)
-                    .clipShape(.rect(cornerRadius: 25))
+                    .frame(width: 180, height: 25)
             }
+            .controlSize(.extraLarge)
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.borderedProminent)
             
             Text("Or")
             
             Button {
                 Task {
                     do {
+                        isLoading = true
                         try await loginVM.signInWithGoogle()
                         print("success sign-in, go to Home")
                     } catch {
-                        if error.localizedDescription == "1009" {
-                            print("error interntet")
-                        }
+                        isLoading = false
                         print(error.localizedDescription)
                     }
                 }
@@ -113,10 +123,9 @@ extension SignInView {
                 }
                 .foregroundStyle(Color(hex: 0x00000089))
                 .fontWeight(.semibold)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
+                .frame(width: 240, height: 55)
                 .background(Color(hex: 0xffffffff))
-                .clipShape(.rect(cornerRadius: 25))
+                .clipShape(.rect(cornerRadius: 30))
                 .shadow(color: Color(hex: 0x00000089).opacity(0.4), radius: 5)
                 .padding(.horizontal, 20)
             }
@@ -141,6 +150,7 @@ extension SignInView {
             }
         }
         .padding(.top, 20)
+        .padding(.bottom, 20)
     }
     
 }
@@ -149,3 +159,10 @@ extension SignInView {
     SignInView()
 }
 
+
+extension SignInView {
+    enum Field: Hashable {
+        case email
+        case password
+    }
+}

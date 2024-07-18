@@ -236,6 +236,26 @@ struct ModalView: View {
                             .padding()
                     }
                     
+                    Button(role: .destructive) {
+                        Task {
+                            do {
+                                try await loginVM.deleteUser()
+                                print("account deleted")
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    } label: {
+                        Text("Delete account")
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .background(Color.red)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: .black.opacity(0.2) , radius: 8)
+                            .padding()
+                    }
+                    
                     Button {
                         dismiss()
                     } label: {
@@ -251,7 +271,7 @@ struct ModalView: View {
                     
                 }
             }
-            .presentationDetents([.height(250)])
+            .presentationDetents([.height(350)])
             .fullScreenCover(isPresented: $loginVM.goToSignInView) {
                 SignInView()
             }

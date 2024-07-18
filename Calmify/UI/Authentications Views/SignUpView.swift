@@ -13,26 +13,27 @@ struct SignUpView: View {
     @State private var loginVM = LoginViewModel()
     @State private var isPasswordVisible: Bool = false
     @FocusState private var focusField: Field?
-    @State private var keyboardHeight: CGFloat = 0
-    
     
     var body: some View {
-        ScrollView {
-            VStack {
-                header
-                signUpText
-                signUpFields
-                button
+        ScrollViewReader { scrollView in
+            ScrollView {
+                VStack {
+                    header
+                    signUpText
+                    signUpFields
+                    button
+                }
+                .padding(.horizontal, 30)
+                .onAppear {
+                    focusField = .fullName
+                }
+                .background(Color.background.onTapGesture {
+                    focusField = nil
+                })
             }
-            .onTapGesture {
-                focusField = nil
-            }
-            .padding(.horizontal, 30)
-            .onAppear {
-                focusField = .fullName
-            }
+            .clipped() //Clips the view within the scrollView
+            .background(Color.background.ignoresSafeArea())
         }
-        .clipped() //Clips the view within the scrollView
     }
 }
 
@@ -41,7 +42,7 @@ extension SignUpView {
         Image(.signUp)
             .resizable()
             .scaledToFill()
-            .frame(width: 250, height: 250)
+            .frame(width: 250, height: 210)
     }
     
     var signUpText: some View {
@@ -82,21 +83,11 @@ extension SignUpView {
             TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .default, isPasswordVisible: $isPasswordVisible, forgotButtonEnable: false)
                 .textContentType(.password)
                 .focused($focusField, equals: .password)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusField = .phoneNumber
-                }
-                .onChange(of: loginVM.password) {
-                    loginVM.buttonEnableForSignUp()
-                }
-            
-            TextfieldsLayout(fieldType: .numberField, placeholder: "Mobile", prefix: {Image(systemName: "phone.fill")}, text: $loginVM.phoneNumber, keyboardType: .phonePad)
-                .focused($focusField, equals: .phoneNumber)
                 .submitLabel(.done)
                 .onSubmit {
                     focusField = nil
                 }
-                .onChange(of: loginVM.phoneNumber) {
+                .onChange(of: loginVM.password) {
                     loginVM.buttonEnableForSignUp()
                 }
         }
@@ -130,6 +121,7 @@ extension SignUpView {
             Home()
         }
         .padding(.top, 30)
+        .padding(.bottom, 30)
     }
 }
 

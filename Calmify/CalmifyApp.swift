@@ -10,12 +10,13 @@ import FirebaseCore
 
 @main
 struct CalmifyApp: App {
-    
+    @State private var networkMonitor = NetworkManager.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
             CoordinatorView()
+                .environment(networkMonitor)
         }
     }
 }

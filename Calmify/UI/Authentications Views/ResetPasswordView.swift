@@ -12,6 +12,12 @@ struct ResetPasswordView: View {
     
     @State private var email: String = ""
     @State var loginVM = LoginViewModel()
+    @State private var showAlert: Bool = false
+    @State private var showErrorAlert: Bool = false
+    @State private var errorMessage: String?
+    @FocusState private var focusField: Field?
+    @Environment(\.dismiss) private var dismiss
+    @Environment(NetworkManager.self) private var network
     
     var body: some View {
         ScrollView {
@@ -20,18 +26,24 @@ struct ResetPasswordView: View {
                 resetPasswordField
             }
             .padding(20)
+            .background(Color.background.onTapGesture {
+                focusField = nil
+            })
         }
         .clipped()
+        .background(Color.background.ignoresSafeArea())
     }
 }
 
 extension ResetPasswordView {
     
     var header: some View {
-        Image(.resetPassword)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 250, height: 250)
+        VStack {
+            Image(.resetPassword)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250, height: 250)
+        }
     }
     
     var resetPasswordField: some View {
@@ -43,6 +55,8 @@ extension ResetPasswordView {
                     .foregroundStyle(Constants.backgroundInvert)
                 
                 TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $email, keyboardType: .emailAddress)
+                    .textContentType(.emailAddress)
+                    .focused($focusField, equals: .email )
             }
             
             Button {
@@ -50,9 +64,12 @@ extension ResetPasswordView {
                     do {
                         print(email)
                         try await loginVM.resetPassword(for: email)
+                        print(email + " enviado")
+                        showAlert = true
                     } catch {
-                        print(error)
-                        print(ErrorManager.noEmailFoundForReset.localizedDescription)
+                        showErrorAlert = true
+                        errorMessage = error.localizedDescription
+                        print(error.localizedDescription)
                     }
                 }
             } label: {
@@ -64,12 +81,35 @@ extension ResetPasswordView {
             .controlSize(.extraLarge)
             .buttonBorderShape(.capsule)
             .buttonStyle(.borderedProminent)
+            .alert("Email sent", isPresented: $showAlert, actions: {
+                Button {
+                    showAlert = false
+                    dismiss()
+                }  label: {
+                    Text("Dismiss")
+                }
+            }, message: {
+                Text("Check your email to reset your password.")
+            })
+            
+            .alert(network.isConnected ? "Email not correct" : "No internet connection", isPresented: $showErrorAlert) {
+                Button("Cancel", role: .cancel) {
+                    showErrorAlert = false
+                }
+            } message: {
+                Text(errorMessage ?? "")
+            }
         }
-        
     }
-    
 }
 
 #Preview {
     ResetPasswordView()
+        .environment(NetworkManager.shared)
+}
+
+extension ResetPasswordView {
+    enum Field: Hashable {
+        case email
+    }
 }

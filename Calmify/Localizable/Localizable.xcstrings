@@ -137,6 +137,9 @@
         }
       }
     },
+    "Check your email to reset your password." : {
+
+    },
     "Choose music" : {
       "localizations" : {
         "es" : {
@@ -177,6 +180,12 @@
         }
       }
     },
+    "Delete account" : {
+
+    },
+    "Dismiss" : {
+
+    },
     "Edit profile" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -187,6 +196,12 @@
           }
         }
       }
+    },
+    "Email not correct" : {
+
+    },
+    "Email sent" : {
+
     },
     "Enter" : {
 
@@ -244,6 +259,9 @@
         }
       }
     },
+    "Loading..." : {
+
+    },
     "Login" : {
 
     },
@@ -274,6 +292,9 @@
       }
     },
     "New to Calmify?" : {
+
+    },
+    "No internet connection" : {
 
     },
     "Notification active" : {
