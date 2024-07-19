@@ -53,6 +53,8 @@
 		53D36EDF2C46CC2200D8EBFE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D36EDE2C46CC2200D8EBFE /* NetworkManager.swift */; };
 		53E913632C34110800B45744 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 53E913622C34110800B45744 /* FirebaseAuth */; };
 		53E913652C3417D400B45744 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E913642C3417D400B45744 /* SignInView.swift */; };
+		53FD5B7E2C4984620097D8F1 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B7D2C4984620097D8F1 /* ProfileSettingsView.swift */; };
+		53FD5B802C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B7F2C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		53CAEC142C456AF200C24065 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		53D36EDE2C46CC2200D8EBFE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		53E913642C3417D400B45744 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		53FD5B7D2C4984620097D8F1 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		53FD5B7F2C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				5367E1672C1238C400AD7135 /* Profile.swift */,
+				53FD5B7F2C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift */,
+				53FD5B7D2C4984620097D8F1 /* ProfileSettingsView.swift */,
 				53A867D42C2ADE6A0039DF17 /* ProfileImageTapped.swift */,
 			);
 			path = Profile;
@@ -486,8 +492,10 @@
 				53A867C92C262CDB0039DF17 /* Extensions.swift in Sources */,
 				53D36EDF2C46CC2200D8EBFE /* NetworkManager.swift in Sources */,
 				5367E15D2C12171A00AD7135 /* onBoarding.swift in Sources */,
+				53FD5B802C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift in Sources */,
 				5367E1742C15BA1000AD7135 /* UserViewModel.swift in Sources */,
 				53A867D72C2C58A30039DF17 /* PhotoPickerViewModel.swift in Sources */,
+				53FD5B7E2C4984620097D8F1 /* ProfileSettingsView.swift in Sources */,
 				53A867CB2C26C13E0039DF17 /* MusicModel.swift in Sources */,
 				534358C42C34476100D6FB2B /* LoginViewModel.swift in Sources */,
 				5367E1712C15B8A900AD7135 /* UserModel.swift in Sources */,

@@ -41,9 +41,9 @@ struct Profile: View {
                     }
                 }
             }
-            .sheet(isPresented: $showSheet, content: {
-                ModalView()
-            })
+            .navigationDestination(isPresented: $showSheet) {
+                ProfileSettingsView()
+            }
         }
         .ignoresSafeArea()
         .onChange(of: userVM.isImageDeleted) { _ ,_ in
@@ -204,82 +204,6 @@ struct InterestTag: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
-
-@MainActor
-struct ModalView: View {
-    @Environment(\.dismiss) var dismiss
-    @State var loginVM = LoginViewModel()
-    
-    var body: some View {
-        ZStack {
-            Color.background
-                .ignoresSafeArea()
-                .opacity(0.4)
-            
-            VStack {
-                VStack {
-                    Button {
-                        do {
-                            try loginVM.logOut()
-                            print("logout succesfully")
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                    } label: {
-                        Text("Logout")
-                            .foregroundStyle(Color.backgroundInvert)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.background)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: .black.opacity(0.2) , radius: 8)
-                            .padding()
-                    }
-                    
-                    Button(role: .destructive) {
-                        Task {
-                            do {
-                                try await loginVM.deleteUser()
-                                print("account deleted")
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    } label: {
-                        Text("Delete account")
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.red)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: .black.opacity(0.2) , radius: 8)
-                            .padding()
-                    }
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Cancel")
-                            .foregroundStyle(Color.backgroundInvert)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.background)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: .black.opacity(0.2) , radius: 8)
-                            .padding()
-                    }
-                    
-                }
-            }
-            .presentationDetents([.height(350)])
-            .fullScreenCover(isPresented: $loginVM.goToSignInView) {
-                SignInView()
-            }
-        }
-    }
-}
-
-
 
 #Preview {
     Profile()

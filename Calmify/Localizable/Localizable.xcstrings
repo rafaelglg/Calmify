@@ -2,10 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "@" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@"
+          }
+        }
+      }
     },
     "%@" : {
       "localizations" : {
@@ -43,6 +57,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Estás seguro que quieres eliminar la foto?"
+          }
+        }
+      }
+    },
+    "Are you sure you want to sign out?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Está seguro que quiere desconectarse?"
           }
         }
       }
@@ -138,7 +162,14 @@
       }
     },
     "Check your email to reset your password." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revisa tu email para resetear tu contraseña"
+          }
+        }
+      }
     },
     "Choose music" : {
       "localizations" : {
@@ -181,33 +212,67 @@
       }
     },
     "Delete account" : {
-
-    },
-    "Dismiss" : {
-
-    },
-    "Edit profile" : {
-      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editar perfil"
+            "value" : "Eliminar cuenta"
           }
         }
       }
     },
-    "Email not correct" : {
+    "Deleting account" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminando cuenta"
+          }
+        }
+      }
+    },
+    "Dismiss" : {
 
+    },
+    "Email not correct" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El email no es correcto"
+          }
+        }
+      }
     },
     "Email sent" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email enviado"
+          }
+        }
+      }
     },
     "Enter" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrar"
+          }
+        }
+      }
     },
     "Forgot?" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olvidada?"
+          }
+        }
+      }
     },
     "Hold" : {
       "localizations" : {
@@ -260,15 +325,16 @@
       }
     },
     "Loading..." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando..."
+          }
+        }
+      }
     },
     "Login" : {
-
-    },
-    "Login with google" : {
-
-    },
-    "Logout" : {
 
     },
     "Madrid, Spain" : {
@@ -292,10 +358,34 @@
       }
     },
     "New to Calmify?" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuevo a camify?"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        }
+      }
     },
     "No internet connection" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay conexión a internet"
+          }
+        }
+      }
     },
     "Notification active" : {
       "localizations" : {
@@ -318,7 +408,14 @@
       }
     },
     "Or" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O"
+          }
+        }
+      }
     },
     "Play now and start relaxing" : {
       "localizations" : {
@@ -341,12 +438,39 @@
       }
     },
     "Reset password" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetear contraseña"
+          }
+        }
+      }
     },
     "send" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar"
+          }
+        }
+      }
     },
     "Sign in" : {
+
+    },
+    "Sign in with Google" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectar con Google"
+          }
+        }
+      }
+    },
+    "Sign out" : {
 
     },
     "Sign Up" : {
@@ -392,8 +516,25 @@
         }
       }
     },
+    "To use **Calmify** again you need to create a account" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para usar **Calmify** de nuevo debes crearte una nueva cuenta"
+          }
+        }
+      }
+    },
     "Welcome to Calmify" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenido a Calmify"
+          }
+        }
+      }
     },
     "Welcome!" : {
       "localizations" : {
@@ -401,6 +542,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Bienvenido!"
+          }
+        }
+      }
+    },
+    "Yes" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si"
           }
         }
       }

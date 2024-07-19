@@ -118,7 +118,7 @@ extension SignInView {
                         .resizable()
                         .frame(width: 25, height: 25)
                     
-                    Text("Login with google")
+                    Text("Sign in with Google")
                     
                 }
                 .foregroundStyle(Color(hex: 0x00000089))
