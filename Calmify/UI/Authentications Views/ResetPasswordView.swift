@@ -54,8 +54,9 @@ extension ResetPasswordView {
                     .fontWeight(.semibold)
                     .foregroundStyle(Constants.backgroundInvert)
                 
-                TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $email, keyboardType: .emailAddress)
-                    .textContentType(.emailAddress)
+                CustomTextfield(iconPrefix: Text("@"), text: $email, placeHolder: "Email", textContentType: .emailAddress)
+                    .keyboardType(.emailAddress)
+                    .accessibilityLabel("Registration")
                     .focused($focusField, equals: .email )
             }
             

@@ -58,8 +58,7 @@ extension SignUpView {
     var signUpFields: some View {
         VStack(spacing: 30) {
             
-            TextfieldsLayout(fieldType: .textFieldType, placeholder: "Full name", prefix: {Image(systemName: "person.fill")}, text: $loginVM.name, keyboardType: .default)
-                .textContentType(.name)
+            CustomTextfield(iconPrefix: Image(systemName: "person.fill"), text: $loginVM.name, placeHolder: "Full name", textContentType: .name)
                 .focused($focusField, equals: .fullName)
                 .submitLabel(.next)
                 .onSubmit {
@@ -69,9 +68,11 @@ extension SignUpView {
                     loginVM.buttonEnableForSignUp()
                 }
             
-            TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $loginVM.email, keyboardType: .emailAddress)
-                .textContentType(.emailAddress)
+            CustomTextfield(iconPrefix: Text("@"), text: $loginVM.email, placeHolder: "Email", textContentType: .emailAddress)
                 .focused($focusField, equals: .email)
+                .keyboardType(.emailAddress)
+                .accessibilityLabel("Registration")
+                .textInputAutocapitalization(.never)
                 .submitLabel(.next)
                 .onSubmit {
                     focusField = .password
@@ -80,8 +81,7 @@ extension SignUpView {
                     loginVM.buttonEnableForSignUp()
                 }
             
-            TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .default, isPasswordVisible: $isPasswordVisible, forgotButtonEnable: false)
-                .textContentType(.password)
+            CustomSecureTexfield(text: $loginVM.password, showPassword: $isPasswordVisible, showForgetPassword: false, forgetPasswordAction: nil)
                 .focused($focusField, equals: .password)
                 .submitLabel(.done)
                 .onSubmit {

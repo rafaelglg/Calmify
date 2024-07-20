@@ -29,30 +29,6 @@ extension View {
     }
 }
 
-extension TextfieldsLayout where T == AnyView {
-    static var previewEmail: TextfieldsLayout {
-        TextfieldsLayout(
-            fieldType: .textFieldType,
-            placeholder: "Email",
-            iconPrefix: { AnyView(Text("")) },
-            text: .constant("hola"),
-            keyboardType: .emailAddress,
-            isPasswordVisible: .constant(false)
-        )
-    }
-    
-    static var previewPassword: TextfieldsLayout {
-        TextfieldsLayout(
-            fieldType: .secureFieldType,
-            placeholder: "hola",
-            iconPrefix: { AnyView(Image(systemName: "lock.fill")) },
-            text: .constant("hola"),
-            keyboardType: .default,
-            isPasswordVisible: .constant(true)
-        )
-    }
-}
-
 extension Color {
     init(hex: String) {
         var cleanHexCode = hex.trimmingCharacters(in: .whitespacesAndNewlines)

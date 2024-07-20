@@ -55,6 +55,8 @@
 		53E913652C3417D400B45744 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E913642C3417D400B45744 /* SignInView.swift */; };
 		53FD5B7E2C4984620097D8F1 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B7D2C4984620097D8F1 /* ProfileSettingsView.swift */; };
 		53FD5B802C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B7F2C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift */; };
+		53FD5B822C4BEDB50097D8F1 /* CustomSecureTexfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B812C4BEDB50097D8F1 /* CustomSecureTexfield.swift */; };
+		53FD5B842C4BF41B0097D8F1 /* CustomTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD5B832C4BF41B0097D8F1 /* CustomTextfield.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		53E913642C3417D400B45744 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		53FD5B7D2C4984620097D8F1 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		53FD5B7F2C4A6E980097D8F1 /* DeleteAccountConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmationView.swift; sourceTree = "<group>"; };
+		53FD5B812C4BEDB50097D8F1 /* CustomSecureTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTexfield.swift; sourceTree = "<group>"; };
+		53FD5B832C4BF41B0097D8F1 /* CustomTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfield.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				534358CC2C35502200D6FB2B /* TextfieldsLayout.swift */,
+				53FD5B812C4BEDB50097D8F1 /* CustomSecureTexfield.swift */,
+				53FD5B832C4BF41B0097D8F1 /* CustomTextfield.swift */,
 				53CAEC142C456AF200C24065 /* LoadingView.swift */,
 			);
 			path = Cells;
@@ -478,6 +484,7 @@
 				53A867CF2C26E1760039DF17 /* MusicView.swift in Sources */,
 				53CAEC132C45277500C24065 /* SignInGoogleManager.swift in Sources */,
 				53635AFF2C21DEFB00C34088 /* NotificationManager.swift in Sources */,
+				53FD5B842C4BF41B0097D8F1 /* CustomTextfield.swift in Sources */,
 				53BB3C5C2C44002500FC2E80 /* GoogleSignInResultModel.swift in Sources */,
 				53A867CD2C26CF8A0039DF17 /* MusicViewModel.swift in Sources */,
 				53A867C72C2629F70039DF17 /* SoundManager.swift in Sources */,
@@ -487,6 +494,7 @@
 				53A867BC2C2447950039DF17 /* Constants.swift in Sources */,
 				5367E1622C1218F000AD7135 /* Home.swift in Sources */,
 				53A867D12C297D570039DF17 /* ErrorManager.swift in Sources */,
+				53FD5B822C4BEDB50097D8F1 /* CustomSecureTexfield.swift in Sources */,
 				53A867D52C2ADE6A0039DF17 /* ProfileImageTapped.swift in Sources */,
 				534358CA2C35471E00D6FB2B /* SignUpView.swift in Sources */,
 				53A867C92C262CDB0039DF17 /* Extensions.swift in Sources */,

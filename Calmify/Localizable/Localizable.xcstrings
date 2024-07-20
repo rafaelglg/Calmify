@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -429,6 +430,9 @@
         }
       }
     },
+    "Password" : {
+
+    },
     "Play now and start relaxing" : {
       "localizations" : {
         "es" : {
@@ -448,6 +452,9 @@
           }
         }
       }
+    },
+    "Registration" : {
+
     },
     "Reset password" : {
       "localizations" : {

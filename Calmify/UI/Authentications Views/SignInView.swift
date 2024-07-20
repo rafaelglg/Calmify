@@ -56,18 +56,20 @@ extension SignInView {
                 .fontWeight(.semibold)
                 .foregroundStyle(Constants.backgroundInvert)
             
-            TextfieldsLayout(fieldType: .textFieldType, placeholder: "Email", prefix: {Text("@")}, text: $loginVM.email, keyboardType: .emailAddress)
-                .textContentType(.emailAddress)
+            CustomTextfield(iconPrefix: Text("@"), text: $loginVM.email, placeHolder: "Email", textContentType: .emailAddress)
+                .keyboardType(.emailAddress)
+                .accessibilityLabel("Registration") // to have email suggestion in keyboard
+                .textInputAutocapitalization(.never)
                 .submitLabel(.next)
                 .onSubmit {
                     focusField = .password
                 }
                 .focused($focusField,equals: .email)
-            
-            TextfieldsLayout(fieldType: .secureFieldType, placeholder: "Password", iconPrefix: {Image(systemName: "lock.fill")}, text: $loginVM.password, keyboardType: .default, isPasswordVisible: $isPasswordVisible, forgotButtonAction: {
+
+            CustomSecureTexfield(text: $loginVM.password, showPassword: $isPasswordVisible, showForgetPassword: true) {
                 loginVM.goToResetPasswordView = true
-            })
-            .textContentType(.password)
+            }
+            .autocorrectionDisabled(true)
             .submitLabel(.done)
             .onSubmit {
                 focusField = nil
