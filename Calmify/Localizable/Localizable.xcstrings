@@ -51,6 +51,12 @@
         }
       }
     },
+    "Account deleted" : {
+
+    },
+    "Account deleted successfully" : {
+
+    },
     "Are you sure you want to delete this picture?" : {
       "localizations" : {
         "es" : {
@@ -110,6 +116,9 @@
           }
         }
       }
+    },
+    "bye" : {
+
     },
     "Calendar" : {
       "localizations" : {
@@ -263,6 +272,9 @@
           }
         }
       }
+    },
+    "Error deleting account" : {
+
     },
     "Forgot?" : {
       "localizations" : {
@@ -525,6 +537,9 @@
           }
         }
       }
+    },
+    "Try again later" : {
+
     },
     "Welcome to Calmify" : {
       "localizations" : {

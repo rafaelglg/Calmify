@@ -13,7 +13,7 @@ enum FieldType {
     case secureFieldType
     case numberField
 }
-
+@MainActor
 struct TextfieldsLayout<T: View>: View {
     
     let fieldType: FieldType

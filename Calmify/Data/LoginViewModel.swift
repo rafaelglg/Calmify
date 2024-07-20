@@ -23,6 +23,10 @@ final class LoginViewModel {
     var goToHomeView: Bool = false
     var buttonIsEnable: Bool = false
     var goToResetPasswordView: Bool = false
+    var showErrorAlert: Bool = false
+    var showSuccessAlert: Bool = false
+    var errorMessage: String = ""
+    var errorType: ErrorManager?
     
     init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared, googleManager: SignInGoogleManagerProtocol = SignInGoogleManager()) {
         self.authManager = authManager
@@ -57,8 +61,11 @@ final class LoginViewModel {
     }
     
     func deleteUser() async throws {
-        try await authManager.deleteUser()
-        goToSignInView = true
+        do {
+            try await authManager.deleteUser()
+        } catch {
+            throw ErrorManager.reauthenticationRequired
+        }
     }
     
     func resetPassword(for givenEmail: String) async throws {
@@ -94,4 +101,10 @@ extension LoginViewModel {
         try await authManager.signInWithGoogle(idTokens: tokens)
         isLoggedIn = true
     }
+    
+    func reAuthenticateUserWithGoogle() async throws {
+        let tokens = try await googleManager.signIn()
+        try await authManager.reAuthenticateUserWithGoogle(idTokens: tokens)
+    }
+    
 }

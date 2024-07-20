@@ -18,6 +18,7 @@ enum ErrorManager: Error, LocalizedError {
     case deleteUser
     case emptyEmail
     case noUserWasFound
+    case reauthenticationRequired
     
     var errorDescription: String? {
         switch self {
@@ -41,6 +42,8 @@ enum ErrorManager: Error, LocalizedError {
             return "The email field is empty, please write a valid email"
         case .noUserWasFound:
             return "The user could not be authenticated"
+        case .reauthenticationRequired:
+            return "This operation is sensitive and requires recent authentication. Log in again before retrying this request."
         }
     }
 }

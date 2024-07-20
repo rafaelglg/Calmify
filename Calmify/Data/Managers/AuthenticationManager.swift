@@ -20,6 +20,7 @@ protocol AuthenticationManagerProtocol {
     @discardableResult
     func signInWithGoogle(idTokens: GoogleSignInResultModel) async throws -> AuthDataResultModel
     func deleteUser() async throws
+    func reAuthenticateUserWithGoogle(idTokens: GoogleSignInResultModel) async throws
 }
 
 final class AuthenticationManager: AuthenticationManagerProtocol {
@@ -80,4 +81,14 @@ extension AuthenticationManager {
         let credential = GoogleAuthProvider.credential(withIDToken: idTokens.idToken, accessToken: idTokens.accessToken)
         return try await signIn(credential: credential)
     }
+    
+    func reAuthenticateUserWithGoogle(idTokens: GoogleSignInResultModel) async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw ErrorManager.noUserWasFound
+        }
+        
+        let credentials = GoogleAuthProvider.credential(withIDToken: idTokens.idToken, accessToken: idTokens.accessToken)
+        try await user.reauthenticate(with: credentials)
+    }
+    
 }

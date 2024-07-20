@@ -9,7 +9,6 @@ import Foundation
 import AVKit
 private var audioPlayer: AVAudioPlayer? // the place needs to be here, to be global, and to avoid warnings in the console
 
-
 final class SoundManager {
     
     static let shared = SoundManager()

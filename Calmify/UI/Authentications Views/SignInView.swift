@@ -30,6 +30,7 @@ struct SignInView: View {
             }
             .sheet(isPresented: $loginVM.goToResetPasswordView) {
                 ResetPasswordView()
+                    .environment(NetworkManager.shared)
             }
             .background(Color.background.onTapGesture {
                 focusField = nil
