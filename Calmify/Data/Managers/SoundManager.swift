@@ -17,10 +17,11 @@ final class SoundManager {
         guard let url = Bundle.main.url(forResource: musicName, withExtension: "mp3") else {
             return
         }
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-        } catch let error {
+        } catch {
             print("error Playing Music \(error.localizedDescription)")
         }
     }

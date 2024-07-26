@@ -56,7 +56,7 @@ extension ResetPasswordView {
                 
                 CustomTextfield(iconPrefix: Text("@"), text: $email, placeHolder: "Email", textContentType: .emailAddress)
                     .keyboardType(.emailAddress)
-                    .accessibilityLabel("Registration")
+                    .accessibilityLabel(Text(verbatim: "Registration")) // to have email suggestion in keyboard
                     .focused($focusField, equals: .email )
             }
             
@@ -93,7 +93,7 @@ extension ResetPasswordView {
                 Text("Check your email to reset your password.")
             })
             
-            .alert(network.isConnected ? "Email not correct" : "No internet connection", isPresented: $showErrorAlert) {
+            .alert(network.isConnected ? "Error" : "No internet connection", isPresented: $showErrorAlert) {
                 Button("Cancel", role: .cancel) {
                     showErrorAlert = false
                 }

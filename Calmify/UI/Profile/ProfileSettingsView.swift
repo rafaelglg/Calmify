@@ -22,6 +22,8 @@ struct ProfileSettingsView: View {
                         deleteAccountButton
                     }
                 }
+                appInfo
+                legalInfo
             }
             .navigationTitle("Profile")
             .fullScreenCover(isPresented: $loginVM.goToSignInView) {
@@ -53,17 +55,38 @@ extension ProfileSettingsView {
     }
     
     var deleteAccountButton: some View {
-        
         Button {
             deleteAccount = true
-
         } label: {
             Text("Delete account")
                 .foregroundStyle(.red)
         }
-
     }
     
+    var appInfo: some View {
+        Section {
+            VStack(alignment: .leading) {
+                Text("This app was developed by Rafael Loggiodice, using 100% **SwiftUI** and **async await**.")
+                    .font(.callout)
+            }
+        } header: {
+            Text("Developer info")
+        } footer: {
+            Text("This sections is to know the developer identity")
+        }
+    }
+    
+    var legalInfo: some View {
+        Section {
+            HStack {
+                Link("Terms of service", destination: URL.safeURL(string: "https://www.google.com"))
+                Spacer()
+                Image(systemName: "applelogo")
+            }
+        } footer: {
+            Text("legal section")
+        }
+    }
 }
 
 

@@ -48,8 +48,14 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     }
     
     func signIn(email: String, password: String) async throws -> AuthDataResultModel {
-        let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-        return AuthDataResultModel(user: authDataResult.user)
+        do {
+            let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            return AuthDataResultModel(user: authDataResult.user)
+        } catch {
+            let err = error as NSError
+            let AuthError = FirebaseAuthError(errorCode: err.code)
+            throw AuthError
+        }
     }
     
     func logOut() throws {
@@ -65,7 +71,12 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     }
     
     func resetPassword(email: String) async throws {
-        try await Auth.auth().sendPasswordReset(withEmail: email)
+        do {
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+        } catch {
+            let err = error as NSError
+            throw FirebaseAuthError(errorCode: err.code)
+        }
     }
     
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {

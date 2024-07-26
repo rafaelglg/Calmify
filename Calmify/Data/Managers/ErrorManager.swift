@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 enum ErrorManager: Error, LocalizedError {
     case noInternetConnection
@@ -19,6 +20,7 @@ enum ErrorManager: Error, LocalizedError {
     case emptyEmail
     case noUserWasFound
     case reauthenticationRequired
+    case noMusicWasFound
     
     var errorDescription: String? {
         switch self {
@@ -44,6 +46,52 @@ enum ErrorManager: Error, LocalizedError {
             return "The user could not be authenticated"
         case .reauthenticationRequired:
             return "This operation is sensitive and requires recent authentication. Log in again before retrying this request."
+        case .noMusicWasFound:
+            return "the music was not found in bundle"
+        }
+    }
+}
+
+/// Is used for firebase error handling
+enum FirebaseAuthError: LocalizedError, Error {
+    case invalidEmail
+    case invalidCredential
+    case wrongPassword
+    case networkError
+    case weakPassword
+    case unknownError
+
+    init(errorCode: Int) {
+        switch AuthErrorCode.Code(rawValue: errorCode) {
+        case .invalidEmail:
+            self = .invalidEmail
+        case .invalidCredential:
+            self = .invalidCredential
+        case .wrongPassword:
+            self = .wrongPassword
+        case .networkError:
+            self = .networkError
+        case .weakPassword:
+            self = .weakPassword
+        default:
+            self = .unknownError
+        }
+    }
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidEmail:
+            return "Invalid email, please ensure to add a correct email"
+        case .invalidCredential:
+            return "Wrong email or password, please check again"
+        case .wrongPassword:
+            return "Wrong password, please check again"
+        case .networkError:
+            return "No internet connection, please find internet connection"
+        case .weakPassword:
+            return "Weak password, please ensure to have a minimun of 6 characters"
+        case .unknownError:
+            return "Unknown error"
         }
     }
 }

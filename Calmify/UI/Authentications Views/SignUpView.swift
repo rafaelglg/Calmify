@@ -71,7 +71,7 @@ extension SignUpView {
             CustomTextfield(iconPrefix: Text("@"), text: $loginVM.email, placeHolder: "Email", textContentType: .emailAddress)
                 .focused($focusField, equals: .email)
                 .keyboardType(.emailAddress)
-                .accessibilityLabel("Registration")
+                .accessibilityLabel(Text(verbatim: "Registration")) // to have email suggestion in keyboard
                 .textInputAutocapitalization(.never)
                 .submitLabel(.next)
                 .onSubmit {
@@ -103,6 +103,8 @@ extension SignUpView {
                         print("cuenta creada")
                         loginVM.goToHomeView.toggle()
                     } catch {
+                        loginVM.showErrorAlert = true
+                        loginVM.errorMessage = error.localizedDescription
                         print(error.localizedDescription)
                     }
                 }
@@ -116,6 +118,16 @@ extension SignUpView {
                 
             }
             .disabled(!loginVM.buttonIsEnable)
+            .alert("Error", isPresented: $loginVM.showErrorAlert) {
+                Button {
+                    loginVM.showErrorAlert = false
+                } label: {
+                    Text("Try again")
+                }
+            } message: {
+                Text(loginVM.errorMessage)
+            }
+
         }
         .fullScreenCover(isPresented: $loginVM.goToHomeView){
             Home()

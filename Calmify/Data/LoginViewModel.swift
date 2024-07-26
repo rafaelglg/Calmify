@@ -34,21 +34,14 @@ final class LoginViewModel {
     }
     
     func signUp() async throws {
-        guard !email.isEmpty, !password.isEmpty else {
-            print("no email or password")
-            throw ErrorManager.noInfoInSignUp
-        }
+        try signUpError()
         try await authManager.createUser(email: email, password: password)
         isLoggedIn = true
         goToSignInView = false
     }
     
     func signIn() async throws {
-        
-        guard !email.isEmpty, !password.isEmpty else {
-            throw ErrorManager.noInfoInSignIn
-        }
-        
+        try signInError()
         try await authManager.signIn(email: email, password: password)
         isLoggedIn = true
         goToSignInView = false
@@ -88,6 +81,39 @@ final class LoginViewModel {
         let password = password.count >= 6
         
         buttonIsEnable = (fullName && email && password)
+    }
+}
+
+// MARK: - Error handling
+extension LoginViewModel {
+    
+    func signUpError() throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("no email or password")
+            throw ErrorManager.noInfoInSignUp
+        }
+        
+        guard password.count > 6 else {
+            throw FirebaseAuthError.weakPassword
+        }
+        
+        guard NetworkManager.shared.isConnected else {
+            throw ErrorManager.noInternetConnection
+        }
+    }
+    
+    func signInError() throws {
+        guard password.count > 6 else {
+            throw FirebaseAuthError.weakPassword
+        }
+
+        guard NetworkManager.shared.isConnected else {
+            throw ErrorManager.noInternetConnection
+        }
+        
+        guard !email.isEmpty, !password.isEmpty else {
+            throw ErrorManager.noInfoInSignIn
+        }
     }
 }
 

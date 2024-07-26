@@ -58,7 +58,7 @@ extension SignInView {
             
             CustomTextfield(iconPrefix: Text("@"), text: $loginVM.email, placeHolder: "Email", textContentType: .emailAddress)
                 .keyboardType(.emailAddress)
-                .accessibilityLabel("Registration") // to have email suggestion in keyboard
+                .accessibilityLabel(Text(verbatim: "Registration")) // to have email suggestion in keyboard
                 .textInputAutocapitalization(.never)
                 .submitLabel(.next)
                 .onSubmit {
@@ -84,11 +84,11 @@ extension SignInView {
                 Task {
                     do {
                         try await loginVM.signIn()
+                        #warning("add spinner when success")
                         print("success sign-in, go to Home")
                     } catch {
-                        if error.localizedDescription == "1009" {
-                            print("error interntet")
-                        }
+                        loginVM.showErrorAlert = true
+                        loginVM.errorMessage = error.localizedDescription
                         print(error.localizedDescription)
                     }
                 }
@@ -101,6 +101,16 @@ extension SignInView {
             .controlSize(.extraLarge)
             .buttonBorderShape(.capsule)
             .buttonStyle(.borderedProminent)
+            .alert("Error", isPresented: $loginVM.showErrorAlert) {
+                Button {
+                    loginVM.showErrorAlert = false
+                } label: {
+                    Text("Try again")
+                }
+            } message: {
+                Text(loginVM.errorMessage)
+            }
+
             
             Text("Or")
             

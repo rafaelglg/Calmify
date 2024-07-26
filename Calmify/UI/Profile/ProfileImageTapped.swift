@@ -56,7 +56,7 @@ struct ProfileImageTapped: View {
                             .foregroundColor(Constants.backgroundInvert)
                     }
                     .alert(isPresented: $buttonTapped) {
-                        Alert(title: Text("Are you sure you want to delete this picture?"), message: Text("you can add it after"), primaryButton: .cancel(), secondaryButton: .destructive(Text("delete"), action: {
+                        Alert(title: Text("Are you sure you want to delete this picture?"), message: Text("You can add it after"), primaryButton: .cancel(), secondaryButton: .destructive(Text("delete"), action: {
                             withAnimation(Animation.easeIn(duration: 0.2)){
                                 userVM.isImageDeleted = true
                             }

@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "@" : {
       "localizations" : {
         "es" : {
@@ -53,10 +42,24 @@
       }
     },
     "Account deleted" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta eliminada"
+          }
+        }
+      }
     },
     "Account deleted successfully" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta eliminada con éxito"
+          }
+        }
+      }
     },
     "Are you sure you want to delete this picture?" : {
       "localizations" : {
@@ -119,7 +122,14 @@
       }
     },
     "bye" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adios!"
+          }
+        }
+      }
     },
     "Calendar" : {
       "localizations" : {
@@ -241,15 +251,22 @@
         }
       }
     },
-    "Dismiss" : {
-
-    },
-    "Email not correct" : {
+    "Developer info" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El email no es correcto"
+            "value" : "Info del desarrollador"
+          }
+        }
+      }
+    },
+    "Dismiss" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss"
           }
         }
       }
@@ -274,8 +291,25 @@
         }
       }
     },
+    "Error" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
     "Error deleting account" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error al eliminar la cuenta"
+          }
+        }
+      }
     },
     "Forgot?" : {
       "localizations" : {
@@ -327,6 +361,16 @@
         }
       }
     },
+    "legal section" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sección legal"
+          }
+        }
+      }
+    },
     "Let's start" : {
       "localizations" : {
         "es" : {
@@ -348,7 +392,14 @@
       }
     },
     "Login" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio"
+          }
+        }
+      }
     },
     "Madrid, Spain" : {
       "localizations" : {
@@ -431,7 +482,14 @@
       }
     },
     "Password" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña"
+          }
+        }
+      }
     },
     "Play now and start relaxing" : {
       "localizations" : {
@@ -452,9 +510,6 @@
           }
         }
       }
-    },
-    "Registration" : {
-
     },
     "Reset password" : {
       "localizations" : {
@@ -535,6 +590,36 @@
         }
       }
     },
+    "Terms of service" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos de servicio"
+          }
+        }
+      }
+    },
+    "This app was developed by Rafael Loggiodice, using 100% **SwiftUI** and **async await**." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta app fue desarrollada por Rafael Loggiodice, usando 100% **SwiftUI** y **Async Await**"
+          }
+        }
+      }
+    },
+    "This sections is to know the developer identity" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta sección es para conocer al desarrollador"
+          }
+        }
+      }
+    },
     "To use **Calmify** again you need to create a account" : {
       "localizations" : {
         "es" : {
@@ -545,8 +630,25 @@
         }
       }
     },
+    "Try again" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intenta de nuevo"
+          }
+        }
+      }
+    },
     "Try again later" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intenta de nuevo más tarde"
+          }
+        }
+      }
     },
     "Welcome to Calmify" : {
       "localizations" : {
@@ -578,7 +680,7 @@
         }
       }
     },
-    "you can add it after" : {
+    "You can add it after" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {

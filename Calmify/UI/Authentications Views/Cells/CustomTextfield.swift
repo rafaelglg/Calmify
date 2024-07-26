@@ -13,19 +13,30 @@ struct CustomTextfield<Icon: View>: View {
     @Binding var text: String
     let placeHolder: String
     let textContentType: UITextContentType
-
+    
     var body: some View {
         HStack {
-            iconPrefix
-                .foregroundStyle(Color(.systemGray))
-                .padding(.trailing, 20)
+            customIconPrefix
+            textfield
             
-            VStack {
-                TextField(placeHolder, text: $text)
-                    .textContentType(textContentType)
-                Divider()
-                    .background(Constants.backgroundInvert)
-            }
+        }
+    }
+}
+
+extension CustomTextfield {
+    
+    var customIconPrefix: some View {
+        iconPrefix
+            .foregroundStyle(Color(.systemGray))
+            .padding(.trailing, 20)
+    }
+    
+    var textfield: some View {
+        VStack {
+            TextField(placeHolder, text: $text)
+                .textContentType(textContentType)
+            Divider()
+                .background(Constants.backgroundInvert)
         }
     }
 }
