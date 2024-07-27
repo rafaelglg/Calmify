@@ -13,6 +13,7 @@ struct Profile: View {
     @State var userVM = UserViewModel.shared
     @State private var imageIsTapped: Bool = false
     @Namespace private var profileImageAnimation
+    @StateObject private var loginVM = LoginViewModel()
     
     var body: some View {
         NavigationStack {
@@ -26,6 +27,14 @@ struct Profile: View {
                     userExtraInfo
                     socialMedia
                     interest
+                }
+                .onAppear {
+                    do {
+                        try loginVM.loadCurrentUser()
+                    } catch {
+                        print("error en profile")
+                        print(error.localizedDescription)
+                    }
                 }
                 .navigationTitle(Text(Constants.appTitleName))
                 .navigationBarTitleTextColor(.black)
@@ -105,7 +114,7 @@ extension Profile {
     }
     
     var userName: some View {
-        Text(userVM.userData.name)
+        Text(loginVM.user?.name ?? "noname")
             .font(.system(size: 22))
             .fontWeight(.medium)
     }

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 struct SignInView: View {
     
     @State var loginVM = LoginViewModel()

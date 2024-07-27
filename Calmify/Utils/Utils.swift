@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 
 class Utils {
+    
     @MainActor
     class func getTopViewController(controller: UIViewController? = nil) -> UIViewController? {
-        // Obtén la escena activa
+        // Obtén la escena(vista) activa
         guard let keyWindow = UIApplication.shared.connectedScenes
             .compactMap({ $0 as? UIWindowScene })
             .flatMap({ $0.windows })

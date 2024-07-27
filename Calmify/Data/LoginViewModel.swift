@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable @MainActor
+@Observable
 final class LoginViewModel {
     
     @ObservationIgnored let googleManager: SignInGoogleManagerProtocol
@@ -27,12 +27,14 @@ final class LoginViewModel {
     var showSuccessAlert: Bool = false
     var errorMessage: String = ""
     var errorType: ErrorManager?
+    var user: AuthDataResultModel?
     
     init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared, googleManager: SignInGoogleManagerProtocol = SignInGoogleManager()) {
         self.authManager = authManager
         self.googleManager = googleManager
     }
     
+    @MainActor
     func signUp() async throws {
         try signUpError()
         try await authManager.createUser(email: email, password: password)
@@ -40,6 +42,15 @@ final class LoginViewModel {
         goToSignInView = false
     }
     
+    func loadCurrentUser() throws {
+        do {
+            self.user = try authManager.getAuthenticatedUser()
+        } catch {
+            print("error en loadCurrentUser: \(error.localizedDescription)")
+        }
+    }
+    
+    @MainActor
     func signIn() async throws {
         try signInError()
         try await authManager.signIn(email: email, password: password)
@@ -93,7 +104,7 @@ extension LoginViewModel {
             throw ErrorManager.noInfoInSignUp
         }
         
-        guard password.count > 6 else {
+        guard password.count >= 6 else {
             throw FirebaseAuthError.weakPassword
         }
         
@@ -103,7 +114,7 @@ extension LoginViewModel {
     }
     
     func signInError() throws {
-        guard password.count > 6 else {
+        guard password.count >= 6 else {
             throw FirebaseAuthError.weakPassword
         }
 
@@ -120,6 +131,7 @@ extension LoginViewModel {
 // MARK: - Sign In with Google
 extension LoginViewModel {
     
+    @MainActor
     func signInWithGoogle() async throws {
         
         let tokens = try await googleManager.signIn()

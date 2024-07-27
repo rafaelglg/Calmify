@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-@MainActor
 struct DeleteAccountConfirmationView: View {
     
-    @State private var loginVM = LoginViewModel()
+    @StateObject private var loginVM = LoginViewModel()
     @State private var goToSignInView: Bool = false
     
     var body: some View {
