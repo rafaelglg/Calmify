@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     
-    @StateObject private var loginVM = LoginViewModel()
+    @State private var loginVM = LoginViewModel()
     @State private var isPasswordVisible: Bool = false
     @FocusState private var focusField: Field?
     

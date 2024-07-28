@@ -10,7 +10,7 @@ import SwiftUI
 struct ResetPasswordView: View {
     
     @State private var email: String = ""
-    @StateObject var loginVM = LoginViewModel()
+    @State var loginVM = LoginViewModel()
     @State private var showAlert: Bool = false
     @State private var showErrorAlert: Bool = false
     @State private var errorMessage: String?

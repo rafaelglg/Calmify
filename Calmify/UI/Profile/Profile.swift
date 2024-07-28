@@ -13,7 +13,7 @@ struct Profile: View {
     @State var userVM = UserViewModel.shared
     @State private var imageIsTapped: Bool = false
     @Namespace private var profileImageAnimation
-    @StateObject private var loginVM = LoginViewModel()
+    @State private var loginVM = LoginViewModel()
     
     var body: some View {
         NavigationStack {
