@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+@MainActor
 struct SignUpView: View {
     
     @State private var loginVM = LoginViewModel()
+    @State private var isLoading: Bool = false
     @State private var isPasswordVisible: Bool = false
     @FocusState private var focusField: Field?
     
     var body: some View {
-        ScrollViewReader { scrollView in
+        ZStack {
             ScrollView {
                 VStack {
                     header
@@ -30,8 +32,16 @@ struct SignUpView: View {
                     focusField = nil
                 })
             }
+            
+            .fullScreenCover(isPresented: $loginVM.goToHomeView){
+                Home()
+            }
             .clipped() //Clips the view within the scrollView
             .background(Color.background.ignoresSafeArea())
+            
+            if isLoading {
+                LoadingView()
+            }
         }
     }
 }
@@ -97,6 +107,7 @@ extension SignUpView {
         VStack {
             Button {
                 Task {
+                    isLoading = true
                     do {
                         try await loginVM.signUp()
                         print("cuenta creada")
@@ -106,6 +117,8 @@ extension SignUpView {
                         loginVM.errorMessage = error.localizedDescription
                         print(error.localizedDescription)
                     }
+                    isLoading = false
+
                 }
             } label: {
                 Text("Enter")
@@ -126,10 +139,7 @@ extension SignUpView {
             } message: {
                 Text(loginVM.errorMessage)
             }
-
-        }
-        .fullScreenCover(isPresented: $loginVM.goToHomeView){
-            Home()
+            
         }
         .padding(.top, 30)
         .padding(.bottom, 30)

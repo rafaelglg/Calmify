@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol AuthenticationManagerProtocol {
     @discardableResult
-    func createUser(email: String, password: String) async throws -> AuthDataResultModel
+    func createUser(email: String, password: String, name: String) async throws -> AuthDataResultModel
     func getAuthenticatedUser() throws -> AuthDataResultModel
     @discardableResult
     func signIn(email: String, password: String) async throws -> AuthDataResultModel
@@ -29,14 +29,24 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
     
     private init(){}
     
-    func createUser(email: String, password: String) async throws -> AuthDataResultModel {
+    func createUser(email: String, password: String, name: String) async throws -> AuthDataResultModel {
         do {
             let authData = try await Auth.auth().createUser(withEmail: email, password: password)
             let dataModelResponse = AuthDataResultModel(user: authData.user)
+            
+            //create request to add name
+            guard let currentUser = Auth.auth().currentUser else {
+                throw ErrorManager.noUserWasFound
+            }
+            
+            let changeDataRequest = currentUser.createProfileChangeRequest()
+            changeDataRequest.displayName = name
+            try await changeDataRequest.commitChanges()
+            
             return dataModelResponse
         } catch {
             print(error.localizedDescription)
-            throw ErrorManager.notificationDenied
+            throw FirebaseAuthError.emailAlreadyInUse
         }
     }
     

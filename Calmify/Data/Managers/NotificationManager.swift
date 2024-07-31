@@ -29,16 +29,15 @@ final class NotificationManager {
     static let shared = NotificationManager()
     var isNotification: Bool = false
     
-    func requestAuthorization() {
+    func requestAuthorization() async throws {
         let options = UNAuthorizationOptions([.alert, .badge, .sound])
-        UNUserNotificationCenter.current().requestAuthorization(options: options) { [weak self] success, error in
-            if success {
-                self?.isNotification = success
-            } else {
-                let myError: ErrorManager
-                myError = .generalError(error: error ?? NSError(domain: "Calmify", code: 1, userInfo: [NSLocalizedDescriptionKey: "Denied to receive notification"]))
-                print(myError)
-            }
+        
+        do {
+            let success = try await UNUserNotificationCenter.current().requestAuthorization(options: options)
+            self.isNotification = success
+        } catch {
+            print(error.localizedDescription)
+            throw ErrorManager.generalError(error: error )
         }
     }
     

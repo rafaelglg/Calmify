@@ -262,6 +262,7 @@
       }
     },
     "Dismiss" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -461,6 +462,9 @@
         }
       }
     },
+    "Ok" : {
+
+    },
     "OK" : {
       "localizations" : {
         "es" : {
@@ -490,6 +494,9 @@
           }
         }
       }
+    },
+    "placeholder" : {
+
     },
     "Play now and start relaxing" : {
       "localizations" : {

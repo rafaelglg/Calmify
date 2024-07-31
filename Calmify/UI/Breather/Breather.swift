@@ -14,15 +14,20 @@ struct Breather: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                
-                header
-                mainContent
-                
-                BreatherToolBar(user: user, selectedTab: $selectedTab)
+            ZStack {
+                Color.background
+                    .brightness(0.02)
+                    .ignoresSafeArea()
+                ScrollView {
+                    
+                    header
+                    mainContent
+                    
+                    BreatherToolBar(user: user, selectedTab: $selectedTab)
+                }
+                .navigationTitle("Calmify")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Calmify")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

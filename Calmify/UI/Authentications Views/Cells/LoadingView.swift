@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ZStack {
-            Color.white.opacity(0.3)
+            Color.background.opacity(0.7)
                 .ignoresSafeArea()
             ProgressView("Loading...")
                 .font(.caption)

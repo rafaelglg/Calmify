@@ -12,20 +12,22 @@ struct onBoarding: View {
     @Binding var animate: Bool
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Breathe...")
-                .font(.system(size: 45))
-                .opacity(animate ? 1 : 0)
-                .animation(
-                    .easeIn(duration: 1.0).speed(1), value: animate)
-            
-            Text("Calmify is here")
-                .font(.largeTitle)
-                .opacity(animate ? 1 : 0)
-                .animation(
-                    .easeIn(duration: 1.5).delay(0.8), value: animate)
-            
-                Image("meditation")
+        ZStack {
+            Color(.background)
+            VStack(alignment: .leading) {
+                Text("Breathe...")
+                    .font(.system(size: 45))
+                    .opacity(animate ? 1 : 0)
+                    .animation(
+                        .easeIn(duration: 1.0).speed(1), value: animate)
+                
+                Text("Calmify is here")
+                    .font(.largeTitle)
+                    .opacity(animate ? 1 : 0)
+                    .animation(
+                        .easeIn(duration: 1.5).delay(0.8), value: animate)
+                
+                Image(.calmingFire)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .opacity(animate ? 1: 0)
@@ -33,12 +35,15 @@ struct onBoarding: View {
                     .animation(
                         .easeInOut(duration: 1.5)
                         .delay(0.8), value: animate)
-            
-            nextButton
-        }.padding(.all, 45)
-            .onAppear {
-                animate.toggle()
+                
+                nextButton
             }
+            .padding(.all, 45)
+                .onAppear {
+                    animate.toggle()
+                }
+        }
+        .ignoresSafeArea()
     }
     
     //MARK: - Next Button
@@ -47,7 +52,13 @@ struct onBoarding: View {
             Spacer()
             Button {
                 withAnimation {
-                    NotificationManager.shared.requestAuthorization()
+                    Task {
+                        do {
+                            try await                      NotificationManager.shared.requestAuthorization()
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
                     goToHomeView = true
                 }
             } label: {

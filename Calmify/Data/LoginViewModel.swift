@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@Observable @MainActor
 final class LoginViewModel {
     
     @ObservationIgnored let googleManager: SignInGoogleManagerProtocol
@@ -25,9 +25,9 @@ final class LoginViewModel {
     var goToResetPasswordView: Bool = false
     var showErrorAlert: Bool = false
     var showSuccessAlert: Bool = false
-    var errorMessage: String = ""
+    @MainActor var errorMessage: String = ""
     var errorType: ErrorManager?
-    var user: AuthDataResultModel?
+    var user: DataBaseUser?
     
     init(authManager: AuthenticationManagerProtocol = AuthenticationManager.shared, googleManager: SignInGoogleManagerProtocol = SignInGoogleManager()) {
         self.authManager = authManager
@@ -37,16 +37,22 @@ final class LoginViewModel {
     @MainActor
     func signUp() async throws {
         try signUpError()
-        try await authManager.createUser(email: email, password: password)
+        let authDataModel = try await authManager.createUser(email: email, password: password, name: self.name)
+        var user = DataBaseUser(auth: authDataModel)
+        user.addName(name: self.name)
+        try await UserManager.shared.createNewUser(user: user)
         isLoggedIn = true
         goToSignInView = false
     }
     
     func loadCurrentUser() throws {
-        do {
-            self.user = try authManager.getAuthenticatedUser()
-        } catch {
-            print("error en loadCurrentUser: \(error.localizedDescription)")
+        Task {
+            do {
+                let authDataUser = try authManager.getAuthenticatedUser()
+                self.user = try await UserManager.shared.getUser(userID: authDataUser.uid)
+            } catch {
+                print("error en loadCurrentUser: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -136,7 +142,9 @@ extension LoginViewModel {
         
         let tokens = try await googleManager.signIn()
         
-        try await authManager.signInWithGoogle(idTokens: tokens)
+        let authDataModel = try await authManager.signInWithGoogle(idTokens: tokens)
+        let user = DataBaseUser(auth: authDataModel)
+        try await UserManager.shared.createNewUser(user: user)
         isLoggedIn = true
     }
     
@@ -144,5 +152,4 @@ extension LoginViewModel {
         let tokens = try await googleManager.signIn()
         try await authManager.reAuthenticateUserWithGoogle(idTokens: tokens)
     }
-    
 }

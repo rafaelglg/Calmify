@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct SignInView: View {
     
     @State var loginVM = LoginViewModel()
@@ -15,28 +16,34 @@ struct SignInView: View {
     @FocusState private var focusField: Field?
     
     var body: some View {
-        ScrollView {
-            VStack {
-                header
-                loginFields
-                loginButtons
-                register
+        ZStack {
+            ScrollView {
+                VStack {
+                    header
+                    loginFields
+                    loginButtons
+                    register
+                }
+                .padding(.horizontal ,30)
+                
+                .sheet(isPresented: $loginVM.goToSignUpView) {
+                    SignUpView()
+                }
+                .sheet(isPresented: $loginVM.goToResetPasswordView) {
+                    ResetPasswordView()
+                        .environment(NetworkManager.shared)
+                }
+                .background(Color.background.onTapGesture {
+                    focusField = nil
+                })
             }
-            .padding(.horizontal ,30)
+            .clipped()
+            .background(Color.background.ignoresSafeArea())
             
-            .sheet(isPresented: $loginVM.goToSignUpView) {
-                SignUpView()
+            if isLoading {
+                LoadingView()
             }
-            .sheet(isPresented: $loginVM.goToResetPasswordView) {
-                ResetPasswordView()
-                    .environment(NetworkManager.shared)
-            }
-            .background(Color.background.onTapGesture {
-                focusField = nil
-            })
         }
-        .clipped()
-        .background(Color.background.ignoresSafeArea())
     }
 }
 
@@ -81,15 +88,16 @@ extension SignInView {
         VStack(spacing: 15) {
             Button {
                 Task {
+                    isLoading = true
                     do {
                         try await loginVM.signIn()
-                        #warning("add spinner when success")
                         print("success sign-in, go to Home")
                     } catch {
                         loginVM.showErrorAlert = true
                         loginVM.errorMessage = error.localizedDescription
                         print(error.localizedDescription)
                     }
+                    isLoading = false
                 }
             } label: {
                 Text("Login")
@@ -109,7 +117,6 @@ extension SignInView {
             } message: {
                 Text(loginVM.errorMessage)
             }
-
             
             Text("Or")
             

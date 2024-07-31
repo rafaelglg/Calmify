@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct ResetPasswordView: View {
     
     @State private var email: String = ""
@@ -17,20 +18,28 @@ struct ResetPasswordView: View {
     @FocusState private var focusField: Field?
     @Environment(\.dismiss) private var dismiss
     @Environment(NetworkManager.self) private var network
+    @State private var isLoading: Bool = false
+    
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                header
-                resetPasswordField
+        ZStack {
+            ScrollView {
+                VStack(spacing: 30) {
+                    header
+                    resetPasswordField
+                }
+                .padding(20)
+                .background(Color.background.onTapGesture {
+                    focusField = nil
+                })
             }
-            .padding(20)
-            .background(Color.background.onTapGesture {
-                focusField = nil
-            })
+            .clipped()
+            .background(Color.background.ignoresSafeArea())
+            
+            if isLoading {
+                LoadingView()
+            }
         }
-        .clipped()
-        .background(Color.background.ignoresSafeArea())
     }
 }
 
@@ -61,6 +70,7 @@ extension ResetPasswordView {
             
             Button {
                 Task {
+                    isLoading = true
                     do {
                         print(email)
                         try await loginVM.resetPassword(for: email)
@@ -71,6 +81,7 @@ extension ResetPasswordView {
                         errorMessage = error.localizedDescription
                         print(error.localizedDescription)
                     }
+                    isLoading = false
                 }
             } label: {
                 Text("send")
@@ -81,16 +92,14 @@ extension ResetPasswordView {
             .controlSize(.extraLarge)
             .buttonBorderShape(.capsule)
             .buttonStyle(.borderedProminent)
-            .alert("Email sent", isPresented: $showAlert, actions: {
-                Button {
+            .alert("Email sent", isPresented: $showAlert) {
+                Button("Ok") {
                     showAlert = false
                     dismiss()
-                }  label: {
-                    Text("Dismiss")
                 }
-            }, message: {
+            } message: {
                 Text("Check your email to reset your password.")
-            })
+            }
             
             .alert(network.isConnected ? "Error" : "No internet connection", isPresented: $showErrorAlert) {
                 Button("Cancel", role: .cancel) {

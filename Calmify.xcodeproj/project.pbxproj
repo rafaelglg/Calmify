@@ -19,6 +19,7 @@
 		534358C42C34476100D6FB2B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534358C32C34476100D6FB2B /* LoginViewModel.swift */; };
 		534358C62C34564300D6FB2B /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534358C52C34564300D6FB2B /* AuthDataResultModel.swift */; };
 		534358CA2C35471E00D6FB2B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534358C92C35471E00D6FB2B /* SignUpView.swift */; };
+		5362168C2C58F5D6007B047A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362168B2C58F5D6007B047A /* UserManager.swift */; };
 		53635AFF2C21DEFB00C34088 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53635AFE2C21DEFB00C34088 /* NotificationManager.swift */; };
 		5367E15D2C12171A00AD7135 /* onBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E15C2C12171A00AD7135 /* onBoarding.swift */; };
 		5367E1622C1218F000AD7135 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367E1612C1218F000AD7135 /* Home.swift */; };
@@ -84,6 +85,7 @@
 		534358C32C34476100D6FB2B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		534358C52C34564300D6FB2B /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
 		534358C92C35471E00D6FB2B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		5362168B2C58F5D6007B047A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		53635AFE2C21DEFB00C34088 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5367E15C2C12171A00AD7135 /* onBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoarding.swift; sourceTree = "<group>"; };
 		5367E1612C1218F000AD7135 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -220,6 +222,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5362168A2C58F5AD007B047A /* DatabaseFirestore */ = {
+			isa = PBXGroup;
+			children = (
+				5362168B2C58F5D6007B047A /* UserManager.swift */,
+			);
+			path = DatabaseFirestore;
+			sourceTree = "<group>";
+		};
 		5367E15E2C1218A500AD7135 /* onBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +353,7 @@
 		53A867C52C2629D40039DF17 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5362168A2C58F5AD007B047A /* DatabaseFirestore */,
 				53635AFE2C21DEFB00C34088 /* NotificationManager.swift */,
 				53A867C62C2629F70039DF17 /* SoundManager.swift */,
 				53A867D02C297D570039DF17 /* ErrorManager.swift */,
@@ -497,6 +508,7 @@
 				53A867BC2C2447950039DF17 /* Constants.swift in Sources */,
 				5367E1622C1218F000AD7135 /* Home.swift in Sources */,
 				53A867D12C297D570039DF17 /* ErrorManager.swift in Sources */,
+				5362168C2C58F5D6007B047A /* UserManager.swift in Sources */,
 				53FD5B822C4BEDB50097D8F1 /* CustomSecureTexfield.swift in Sources */,
 				53A867D52C2ADE6A0039DF17 /* ProfileImageTapped.swift in Sources */,
 				534358CA2C35471E00D6FB2B /* SignUpView.swift in Sources */,

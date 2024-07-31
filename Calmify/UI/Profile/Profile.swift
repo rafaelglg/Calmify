@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct Profile: View {
     @State var showSheet: Bool = false
     @Environment (\.colorScheme) var colorScheme
@@ -14,62 +15,67 @@ struct Profile: View {
     @State private var imageIsTapped: Bool = false
     @Namespace private var profileImageAnimation
     @State private var loginVM = LoginViewModel()
+    @State private var bio: String = "Enter your bio"
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    
-                    bgImage
-                    profileImage
-                    userName
-                    userBio
-                    userExtraInfo
-                    socialMedia
-                    interest
-                }
-                .onAppear {
-                    do {
-                        try loginVM.loadCurrentUser()
-                    } catch {
-                        print("error en profile")
-                        print(error.localizedDescription)
+            ZStack {
+                Color.background
+                    .brightness(0.02)
+                ScrollView {
+                    VStack(spacing: 20) {
+                        
+                        bgImage
+                        profileImage
+                        userName
+                        userBio
+                        userExtraInfo
+                        socialMedia
+                        interest
                     }
-                }
-                .navigationTitle(Text(Constants.appTitleName))
-                .navigationBarTitleTextColor(.black)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarBackButtonHidden(true)
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showSheet.toggle()
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                }
-            }
-            .navigationDestination(isPresented: $showSheet) {
-                ProfileSettingsView()
-            }
-        }
-        .ignoresSafeArea()
-        .onChange(of: userVM.isImageDeleted) { _ ,_ in
-            if userVM.isImageDeleted {
-                userVM.removeProfilePicture()
-                imageIsTapped = false
-                userVM.resetImageDeletedFlag()
-            }
-        }
-        .overlay {
-            if imageIsTapped {
-                ProfileImageTapped(profileImageAnimation: profileImageAnimation)
-                    .onTapGesture {
-                        withAnimation(Animation.easeIn(duration: 0.2)) {
-                            imageIsTapped = false
+                    .onAppear {
+                        do {
+                            try loginVM.loadCurrentUser()
+                        } catch {
+                            print("error en profile")
+                            print(error.localizedDescription)
                         }
                     }
+                    .navigationTitle(Text(Constants.appTitleName))
+                    .navigationBarTitleTextColor(.black)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarBackButtonHidden(true)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showSheet.toggle()
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
+                .navigationDestination(isPresented: $showSheet) {
+                    ProfileSettingsView()
+                }
+            }
+            .ignoresSafeArea()
+            .onChange(of: userVM.isImageDeleted) { _ ,_ in
+                if userVM.isImageDeleted {
+                    userVM.removeProfilePicture()
+                    imageIsTapped = false
+                    userVM.resetImageDeletedFlag()
+                }
+            }
+            .overlay {
+                if imageIsTapped {
+                    ProfileImageTapped(profileImageAnimation: profileImageAnimation)
+                        .onTapGesture {
+                            withAnimation(Animation.easeIn(duration: 0.2)) {
+                                imageIsTapped = false
+                            }
+                        }
+                }
             }
         }
     }
@@ -114,9 +120,17 @@ extension Profile {
     }
     
     var userName: some View {
-        Text(loginVM.user?.name ?? "noname")
-            .font(.system(size: 22))
-            .fontWeight(.medium)
+        Group {
+            if let userName = loginVM.user?.name {
+                Text(userName)
+                    .font(.system(size: 22))
+                    .fontWeight(.medium)
+            } else {
+                Text("placeholder")
+                    .redacted(reason: .placeholder)
+                    .font(.system(size: 22))
+            }
+        }
     }
     
     var userBio: some View {
@@ -148,7 +162,7 @@ extension Profile {
                 .background(Constants.backgroundColor)
                 .foregroundStyle(Constants.backgroundInvert)
                 .clipShape(.capsule)
-                .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .clear , radius: 5)
+                .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .background , radius: 5)
             })
             
             Link(destination: URL.safeURL(string: "https://www.instagram.com/rafaloggiodice"), label: {
@@ -158,7 +172,7 @@ extension Profile {
             })
             .background(Constants.backgroundColor)
             .clipShape(.capsule)
-            .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .clear , radius: 5)
+            .shadow(color: colorScheme == .light ? .primary.opacity(0.4) : .background , radius: 5)
         }
     }
     

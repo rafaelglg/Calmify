@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct ProfileSettingsView: View {
     @State var loginVM = LoginViewModel()
     @State private var isSignOut: Bool = false

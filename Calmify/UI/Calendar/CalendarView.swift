@@ -13,19 +13,22 @@ struct CalendarView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    HStack {
-                        ForEach(emojis, id: \.self) {
-                            Text($0)
+            ZStack {
+                Color.background.ignoresSafeArea()
+                ScrollView {
+                    VStack {
+                        HStack {
+                            ForEach(emojis, id: \.self) {
+                                Text($0)
+                            }
                         }
+                        Spacer()
+                        CalendarCreator()
                     }
-                    Spacer()
-                    CalendarCreator()
                 }
+                .navigationTitle("Calmify")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Calmify")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

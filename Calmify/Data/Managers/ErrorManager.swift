@@ -60,6 +60,7 @@ enum FirebaseAuthError: LocalizedError, Error {
     case networkError
     case weakPassword
     case unknownError
+    case emailAlreadyInUse
 
     init(errorCode: Int) {
         switch AuthErrorCode.Code(rawValue: errorCode) {
@@ -73,6 +74,8 @@ enum FirebaseAuthError: LocalizedError, Error {
             self = .networkError
         case .weakPassword:
             self = .weakPassword
+        case .emailAlreadyInUse:
+            self = .emailAlreadyInUse
         default:
             self = .unknownError
         }
@@ -92,6 +95,8 @@ enum FirebaseAuthError: LocalizedError, Error {
             return "Weak password, please ensure to have a minimun of 6 characters"
         case .unknownError:
             return "Unknown error"
+        case .emailAlreadyInUse:
+            return "The email address is already in use by another account. please use a different email"
         }
     }
 }

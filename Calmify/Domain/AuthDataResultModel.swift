@@ -12,7 +12,7 @@ struct AuthDataResultModel {
     let uid: String
     let email: String?
     let photoURL: String?
-    let name: String
+    var name: String
     let phoneNumber: String?
     
     init(user: User) {
