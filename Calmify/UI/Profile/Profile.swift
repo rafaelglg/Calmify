@@ -22,6 +22,8 @@ struct Profile: View {
             ZStack {
                 Color.background
                     .brightness(0.02)
+                    .ignoresSafeArea()
+
                 ScrollView {
                     VStack(spacing: 20) {
                         
@@ -59,7 +61,6 @@ struct Profile: View {
                     ProfileSettingsView()
                 }
             }
-            .ignoresSafeArea()
             .onChange(of: userVM.isImageDeleted) { _ ,_ in
                 if userVM.isImageDeleted {
                     userVM.removeProfilePicture()
